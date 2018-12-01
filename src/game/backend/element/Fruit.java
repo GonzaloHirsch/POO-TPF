@@ -3,6 +3,7 @@ package game.backend.element;
 public class Fruit extends Element {
 
     private FruitType type;
+    private boolean isCleared = false;
 
     public Fruit(){}
 
@@ -26,6 +27,9 @@ public class Fruit extends Element {
             return false;
         return true;
     }
+
+    @Override
+    public long getScore(){ return 1; }
 
     @Override
     public boolean isMovable() { return true; }
