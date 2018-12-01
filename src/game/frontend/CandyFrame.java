@@ -61,6 +61,7 @@ public class CandyFrame extends VBox {
 
 		listener.gridUpdated();
 
+		//	When the user clicks on a grid cell
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
 			if (lastPoint == null) {
 				lastPoint = translateCoords(event.getX(), event.getY());
@@ -69,6 +70,8 @@ public class CandyFrame extends VBox {
 				Point2D newPoint = translateCoords(event.getX(), event.getY());
 				if (newPoint != null) {
 					System.out.println("Get second = " +  newPoint);
+
+					//	Here it tries to make the swap
 					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
 					String message = ((Long)game().getScore()).toString();
 					if (game().isFinished()) {
@@ -78,6 +81,8 @@ public class CandyFrame extends VBox {
 							message = message + " Finished - Loser !";
 						}
 					}
+
+					//	Upd
 					scorePanel.updateScore(message);
 					lastPoint = null;
 				}

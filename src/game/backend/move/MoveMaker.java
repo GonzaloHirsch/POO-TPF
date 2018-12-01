@@ -20,6 +20,11 @@ public class MoveMaker {
 		initMap();
 	}
 
+	/*
+		This has all the posible pair of elements you can swap, taking into account
+		that a pair (A-B) =/= (B-A) and it has a different associated key
+		Each pair is mapped to a different effect it has.
+	 */
 	private void initMap(){
 		map = new HashMap<>();
 		map.put(new Candy().getKey() + new Candy().getKey(), new CandyMove(grid));

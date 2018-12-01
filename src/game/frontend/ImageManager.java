@@ -15,7 +15,6 @@ public class ImageManager {
 		Creates a hashmap with all the images
 	 */
 	public ImageManager() {
-		//
 		WrappedCandy wc = new WrappedCandy();
 		VerticalStripedCandy vc = new VerticalStripedCandy();
 		HorizontalStripedCandy hc = new HorizontalStripedCandy();

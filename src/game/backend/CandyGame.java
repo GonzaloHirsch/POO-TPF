@@ -2,6 +2,8 @@ package game.backend;
 
 import game.backend.cell.Cell;
 import game.backend.element.Element;
+import game.backend.element.Fruit;
+import game.backend.element.FruitType;
 
 public class CandyGame implements GameListener {
 	
@@ -29,6 +31,9 @@ public class CandyGame implements GameListener {
 	}
 	
 	public boolean tryMove(int i1, int j1, int i2, int j2){
+		// If any of the elements chosen to move is a Fruit, it returns false because they are not selectable
+		if (grid.g()[i1][j1].getContent() instanceof Fruit || grid.g()[i2][j2].getContent() instanceof Fruit)
+				return false;
 		return grid.tryMove(i1, j1, i2, j2);
 	}
 	
