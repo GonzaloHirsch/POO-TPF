@@ -6,6 +6,8 @@ import game.backend.element.Element;
 
 import java.awt.Point;
 
+//TODO understand figure checking to modify it
+
 public class FigureDetector {
 	
 	private Grid grid;
