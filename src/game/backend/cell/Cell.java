@@ -13,9 +13,13 @@ public class Cell {
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
+		//	Initializes all cells with nothing
 		this.content = new Nothing();
 	}
-	
+
+	/*
+		Fills the arround array with the cells adyacent to the actual one
+	 */
 	public void setAround(Cell up, Cell down, Cell left, Cell right) {
 		this.around[Direction.UP.ordinal()] = up;
 		this.around[Direction.DOWN.ordinal()] = down;
@@ -72,9 +76,13 @@ public class Cell {
 		return null;
 	}
 
+	/*
+		Moves the content recursively from top to bottom, until it hits something "solid"
+	 */
 	public boolean fallUpperContent() {
 		Cell up = around[Direction.UP.ordinal()];
 		if (this.isEmpty() && !up.isEmpty() && up.isMovable()) {
+			//	Retrieves the content from the cell above itself and sets it to itself
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {

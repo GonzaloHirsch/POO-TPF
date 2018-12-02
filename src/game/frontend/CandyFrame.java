@@ -27,10 +27,15 @@ public class CandyFrame extends VBox {
 		this.game = game;
 		getChildren().add(new AppMenu());
 		images = new ImageManager();
+
+		//	Board Panel
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
 		getChildren().add(boardPanel);
+
+		//	Score Panel
 		scorePanel = new ScorePanel();
 		getChildren().add(scorePanel);
+
 		game.initGame();
 		GameListener listener;
 		game.addGameListener(listener = new GameListener() {
@@ -82,7 +87,6 @@ public class CandyFrame extends VBox {
 						}
 					}
 
-					//	Upd
 					scorePanel.updateScore(message);
 					lastPoint = null;
 				}

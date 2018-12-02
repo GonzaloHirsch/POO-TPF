@@ -56,7 +56,7 @@ public class Level2 extends Grid {
                 g()[i][j].setAround(g()[i-1][j],g()[i+1][j],g()[i][j-1],g()[i][j+1]);
             }
         }
-        /*
+/*
         for (int i = 0; i < REQUIRED_SCORE; i++){
         }
 */

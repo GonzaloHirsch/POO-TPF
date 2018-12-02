@@ -31,12 +31,17 @@ public class CandyGame implements GameListener {
 	}
 	
 	public boolean tryMove(int i1, int j1, int i2, int j2){
+		/*
 		// If any of the elements chosen to move is a Fruit, it returns false because they are not selectable
 		if (grid.g()[i1][j1].getContent() instanceof Fruit || grid.g()[i2][j2].getContent() instanceof Fruit)
 				return false;
+				*/
 		return grid.tryMove(i1, j1, i2, j2);
 	}
-	
+
+	/*
+		Returns the cell in the given position (i, j)
+	 */
 	public Cell get(int i, int j){
 		return grid.getCell(i, j);
 	}

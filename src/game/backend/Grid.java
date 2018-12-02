@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Grid {
-	
+
+	//	Size of the square grid
 	public static final int SIZE = 9;
 
 	private Cell[][] g = new Cell[SIZE][SIZE];
@@ -81,8 +82,13 @@ public abstract class Grid {
 	public void setContent(int i, int j, Element e) {
 		g[i][j].setContent(e);
 	}
-	
+
+	/*
+		Gets the type of movement involved and makes the swap.
+		If the move is not valid it swaps again, returning to the state before.
+	 */
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
+		//	Gets the type of movement made
 		Move move = moveMaker.getMove(i1, j1, i2, j2);
 		swapContent(i1, j1, i2, j2);
 		if (move.isValid()) {
@@ -94,7 +100,11 @@ public abstract class Grid {
 			return false;
 		}
 	}	
-	
+
+	/*
+		Checks whether the piece in the new place creates a shape,
+		and if it does, it removes it.
+	 */
 	public Figure tryRemove(Cell cell) {
 		if (gMap.containsKey(cell)) {
 			Point p = gMap.get(cell);

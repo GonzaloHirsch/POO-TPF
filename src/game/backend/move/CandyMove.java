@@ -3,6 +3,7 @@ package game.backend.move;
 import game.backend.Figure;
 import game.backend.FigureDetector;
 import game.backend.Grid;
+import game.backend.element.Fruit;
 
 public class CandyMove extends Move {
 
@@ -20,8 +21,14 @@ public class CandyMove extends Move {
 	@Override
 	public boolean internalValidation() {
 		this.detector = new FigureDetector(grid);
-		f1 = detector.checkFigure(i1, j1);
-		f2 = detector.checkFigure(i2, j2);
+		if (this.grid.getCell(i1,j1).getContent() instanceof Fruit)
+			f1 = null;
+		else
+			f1 = detector.checkFigure(i1, j1);
+		if (this.grid.getCell(i2,j2).getContent() instanceof Fruit)
+			f2 = null;
+		else
+			f2 = detector.checkFigure(i2, j2);
 		return f1 != null || f2 != null;
 	}	
 
