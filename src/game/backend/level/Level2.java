@@ -13,7 +13,7 @@ public class Level2 extends Grid {
 
     private static int FRUIT_AMOUNT = 6;
     private static int MAX_MOVES = 20;
-    private static double FRUIT_CHANCE = 0.2;
+    private static double FRUIT_CHANCE = 0.04;
 
     private Cell wallCell;
     private Cell fruitGenCell;
