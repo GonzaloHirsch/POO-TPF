@@ -16,6 +16,7 @@ public class GameApp extends Application {
 
 	@Override
 	public void start(Stage primaryStage) {
+
 		//CandyGame game = new CandyGame(Level1.class);
 		CandyGame game = new FruitCandyGame(Level2.class);
 		CandyFrame frame = new CandyFrame(game);
@@ -23,6 +24,16 @@ public class GameApp extends Application {
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
+
+		//	Trying to build a main menu for the game
+		/*
+		AppMainMenu menu = new AppMainMenu(primaryStage);
+		Scene scene = new Scene(menu, 65 * 9, 65 * 9);
+		primaryStage.setResizable(false);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+		*/
 	}
 
 }
