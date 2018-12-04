@@ -17,19 +17,22 @@ public class MoveMaker {
 	}
 
 	/*
-		This has all the posible pair of elements you can swap, taking into account
+		This has all the possible pair of elements you can swap, taking into account
 		that a pair (A-B) =/= (B-A) and it has a different associated key
 		Each pair is mapped to a different effect it has.
 	 */
 	private void initMap(){
 		map = new HashMap<>();
+
+		//	Candy moves
 		map.put(new Candy().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new Candy().getKey() + new HorizontalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Candy().getKey() + new VerticalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Candy().getKey() + new WrappedCandy().getKey(), new CandyMove(grid));
 		map.put(new Candy().getKey() + new Bomb().getKey(), new BombMove(grid));
 		map.put(new Candy().getKey() + new Fruit().getKey(), new CandyMove(grid));	//	Fruit moves
-	
+
+		//	Horizontal Striped Moves
 		map.put(new HorizontalStripedCandy().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new HorizontalStripedCandy().getKey() + new HorizontalStripedCandy().getKey(), new TwoStripedMove(grid));
 		map.put(new HorizontalStripedCandy().getKey() + new VerticalStripedCandy().getKey(), new TwoStripedMove(grid));
@@ -37,6 +40,7 @@ public class MoveMaker {
 		map.put(new HorizontalStripedCandy().getKey() + new Bomb().getKey(), new BombStrippedMove(grid));
 		map.put(new HorizontalStripedCandy().getKey() + new Fruit().getKey(), new CandyMove(grid));	//	Fruit moves
 
+		//	Vertical Striped Moves
 		map.put(new VerticalStripedCandy().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new VerticalStripedCandy().getKey() + new HorizontalStripedCandy().getKey(), new TwoStripedMove(grid));
 		map.put(new VerticalStripedCandy().getKey() + new VerticalStripedCandy().getKey(), new TwoStripedMove(grid));
@@ -44,6 +48,7 @@ public class MoveMaker {
 		map.put(new VerticalStripedCandy().getKey() + new Bomb().getKey(), new BombStrippedMove(grid));
 		map.put(new VerticalStripedCandy().getKey() + new Fruit().getKey(), new CandyMove(grid));	//	Fruit moves
 
+		//	Wrapped candy moves
 		map.put(new WrappedCandy().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new WrappedCandy().getKey() + new HorizontalStripedCandy().getKey(), new WrappedStripedMove(grid));
 		map.put(new WrappedCandy().getKey() + new VerticalStripedCandy().getKey(), new WrappedStripedMove(grid));
@@ -51,33 +56,21 @@ public class MoveMaker {
 		map.put(new WrappedCandy().getKey() + new Bomb().getKey(), new BombWrappedMove(grid));
 		map.put(new WrappedCandy().getKey() + new Fruit().getKey(), new CandyMove(grid));	//	Fruit moves
 
+		//	Bomb moves
 		map.put(new Bomb().getKey() + new Candy().getKey(), new BombMove(grid));
 		map.put(new Bomb().getKey() + new HorizontalStripedCandy().getKey(), new BombStrippedMove(grid));
 		map.put(new Bomb().getKey() + new VerticalStripedCandy().getKey(), new BombStrippedMove(grid));
 		map.put(new Bomb().getKey() + new WrappedCandy().getKey(), new BombWrappedMove(grid));
 		map.put(new Bomb().getKey() + new Bomb().getKey(), new TwoBombMove(grid));
-		map.put(new Bomb().getKey() + new Fruit().getKey(), new Move(grid) {
-			@Override
-			public boolean internalValidation(){ return false; }
-
-			@Override
-			public void removeElements() { /* It cannot happen this move*/ }
-		});	//	Fruit moves
+		map.put(new Bomb().getKey() + new Fruit().getKey(), new InvalidMove(grid));	//	Fruit moves
 
 		// Fruit moves
 		map.put(new Fruit().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new HorizontalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new VerticalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new WrappedCandy().getKey(), new CandyMove(grid));
-		map.put(new Fruit().getKey() + new Bomb().getKey(), new Move(grid) {
-			@Override
-			public boolean internalValidation(){ return false; }
-
-			@Override
-			public void removeElements() { /* It cannot happen this move*/ }
-		});
-
-		//TODO add the fruits movement and decide if it can move with bombs
+		map.put(new Fruit().getKey() + new Bomb().getKey(), new InvalidMove(grid));
+		map.put(new Fruit().getKey() + new Fruit().getKey(), new InvalidMove(grid));
 	}
 	
 	public Move getMove(int i1, int j1, int i2, int j2) {

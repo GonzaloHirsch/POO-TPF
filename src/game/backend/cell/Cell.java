@@ -88,8 +88,12 @@ public class Cell {
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {
+
+				//	If the element is a fruit and doesn't have a wall below
 				if (this.getContent() instanceof Fruit && around[Direction.DOWN.ordinal()].isMovable())
 					return true;
+
+				//	If the element is a candy or a fruit with a wall below
 				grid.tryRemove(this);
 				return true;
 			} else {

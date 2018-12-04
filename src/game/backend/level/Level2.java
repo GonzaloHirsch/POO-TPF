@@ -14,7 +14,11 @@ public class Level2 extends Grid {
     private static int FRUIT_AMOUNT = 6;
     private static int MAX_MOVES = 20;
     /*
-        With less than 1, it should spawn some in the beginning and some later.
+        This number (between 0 and 1) represents the chances of a fruit appearing.
+        Suggested values:
+            All 6 fruits in the beginning --> FRUIT_CHANCE = 0.2
+            About 4 fruits in the beginning --> FRUIT_CHANCE = 0.09
+            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.05
         I found out around 0.05 works best, spawning maybe 2 or 3 at the start.
      */
     private static double FRUIT_CHANCE = 0.05;
@@ -77,6 +81,7 @@ public class Level2 extends Grid {
             return playerWon() || getMoves() >= this.maxMoves;
         }
 
+        //  The player wins when all the fruits are cleared
         public boolean playerWon() {
             return getScore() >= this.fruitAmount;
         }

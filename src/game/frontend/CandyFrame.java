@@ -68,30 +68,38 @@ public class CandyFrame extends VBox {
 
 		//	When the user clicks on a grid cell
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-			if (lastPoint == null) {
-				lastPoint = translateCoords(event.getX(), event.getY());
-				System.out.println("Get first = " +  lastPoint);
-			} else {
-				Point2D newPoint = translateCoords(event.getX(), event.getY());
-				if (newPoint != null) {
-					System.out.println("Get second = " +  newPoint);
+			//	Verification that stops the player from making moves if the game is over
+			if (!game().isFinished()){
+				if (lastPoint == null) {
+					lastPoint = translateCoords(event.getX(), event.getY());
+					System.out.println("Get first = " +  lastPoint);
+				} else {
+					Point2D newPoint = translateCoords(event.getX(), event.getY());
+					if (newPoint != null) {
+						System.out.println("Get second = " +  newPoint);
 
-					//	Here it tries to make the swap
-					game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
-					String message = ((Long)game().getScore()).toString();
-					if (game().isFinished()) {
-						if (game().playerWon()) {
-							message = message + " Finished - Player Won!";
-						} else {
-							message = message + " Finished - Loser !";
+						//	Here it tries to make the swap
+						game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
+
+						//	Message showing the score of the player
+						String message = ((Long)game().getScore()).toString();
+
+						//	Checking if game is over
+						if (game().isFinished()) {
+							if (game().playerWon()) {
+								message = message + " Finished - Player Won!";
+							} else {
+								message = message + " Finished - Loser !";
+							}
 						}
-					}
 
-					scorePanel.updateScore(message);
-					lastPoint = null;
+						scorePanel.updateScore(message);
+						lastPoint = null;
+					}
 				}
 			}
 		});
+
 
 	}
 
