@@ -4,6 +4,7 @@ import game.backend.cell.Cell;
 import game.backend.element.Candy;
 import game.backend.element.CandyColor;
 import game.backend.element.Element;
+import game.backend.element.Fruit;
 import game.backend.move.Move;
 import game.backend.move.MoveMaker;
 
@@ -118,14 +119,18 @@ public abstract class Grid {
 	}
 	
 	private void removeFigure(int i, int j, Figure f) {
-		CandyColor color = ((Candy)get(i, j)).getColor();
-		if (f.hasReplacement()) {
-			setContent(i, j, f.generateReplacement(color));
-		} else {
+		if (f.matches(Fruit.getFruitValue())){
 			clearContent(i, j);
-		}
-		for (Point p: f.getPoints()) {
-			clearContent(i + p.x, j + p.y);
+		} else {
+			CandyColor color = ((Candy) get(i, j)).getColor();
+			if (f.hasReplacement()) {
+				setContent(i, j, f.generateReplacement(color));
+			} else {
+				clearContent(i, j);
+			}
+			for (Point p : f.getPoints()) {
+				clearContent(i + p.x, j + p.y);
+			}
 		}
 	}
 

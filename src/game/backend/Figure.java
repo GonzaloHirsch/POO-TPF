@@ -1,12 +1,6 @@
 package game.backend;
 
-import game.backend.element.Bomb;
-import game.backend.element.Candy;
-import game.backend.element.CandyColor;
-import game.backend.element.Element;
-import game.backend.element.HorizontalStripedCandy;
-import game.backend.element.VerticalStripedCandy;
-import game.backend.element.WrappedCandy;
+import game.backend.element.*;
 
 import java.awt.Point;
 
@@ -58,7 +52,10 @@ public enum Figure {
 	// 3 horizontal candies --> No special
 	F10(new Point[]{ new Point(1,0), new Point(2,0)}, 12),	
 	F11(new Point[]{ new Point(-1,0), new Point(1,0)}, 5),	
-	F12(new Point[]{ new Point(-2,0), new Point(-1,0)}, 3);
+	F12(new Point[]{ new Point(-2,0), new Point(-1,0)}, 3),
+
+	//	Figure representing a Fruit
+	F21(Fruit.getFruitValue());
 	
 	
 	private Point[] points;
@@ -81,6 +78,12 @@ public enum Figure {
 	
 	Figure(Point[] points, int value) {
 		this.points = points;
+		this.value = value;
+		this.replacementClass = null;
+	}
+
+	Figure(int value){
+		this.points = null;
 		this.value = value;
 		this.replacementClass = null;
 	}

@@ -18,7 +18,6 @@ public class ImageManager {
 		WrappedCandy wc = new WrappedCandy();
 		VerticalStripedCandy vc = new VerticalStripedCandy();
 		HorizontalStripedCandy hc = new HorizontalStripedCandy();
-		Fruit fr = new Fruit();
 		images = new HashMap<>();
 		images.put(new Nothing().getKey(), new Image(IMAGE_PATH + "nothing.png"));
 		images.put(new Bomb().getKey(),  new Image(IMAGE_PATH + "bomb.png"));
@@ -44,8 +43,7 @@ public class ImageManager {
 		}
 		//	Types of fruits
 		for (FruitType ft: FruitType.values()){
-			fr.setType(ft);
-			images.put(fr.getFullKey(), new Image(IMAGE_PATH + ft.toString().toLowerCase() + ".png"));
+			images.put(new Fruit(ft).getFullKey(), new Image(IMAGE_PATH + ft.toString().toLowerCase() + ".png"));
 		}
 	}
 

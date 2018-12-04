@@ -3,6 +3,7 @@ package game.backend;
 import game.backend.element.Candy;
 import game.backend.element.CandyColor;
 import game.backend.element.Element;
+import game.backend.element.Fruit;
 
 import java.awt.Point;
 
@@ -27,10 +28,16 @@ public class FigureDetector {
 		}
 		return null;
 	}
-	
+
+	/*
+		Checkpoint reader and accumulator.
+		If there is a Fruit in the cell, it returns the specific fruit code.
+	 */
 	private int readCheckpoints(int i, int j) {
 		Element curr = grid.get(i,j);
 		int acum = 0;
+		if (grid.g()[i][j].getContent() instanceof Fruit)
+			return Fruit.getFruitValue();
 		for (Checkpoint cp: Checkpoint.values()) {
 			int newI = i + cp.getI();
 			int newJ = j + cp.getJ();

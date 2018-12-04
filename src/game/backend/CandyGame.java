@@ -4,17 +4,23 @@ import game.backend.cell.Cell;
 import game.backend.element.Element;
 import game.backend.element.Fruit;
 import game.backend.element.FruitType;
+import game.backend.level.Level1;
 
 public class CandyGame implements GameListener {
-	
+
 	private Class<?> levelClass;
 	private Grid grid;
-	private GameState state;
+	protected GameState state;
 	
 	public CandyGame(Class<?> clazz) {
 		this.levelClass = clazz;
 	}
-	
+
+
+	public Class<?> getLevelClass() {
+		return levelClass;
+	}
+
 	public void initGame() {
 		try {
 			grid = (Grid)levelClass.newInstance();
@@ -31,11 +37,6 @@ public class CandyGame implements GameListener {
 	}
 	
 	public boolean tryMove(int i1, int j1, int i2, int j2){
-		/*
-		// If any of the elements chosen to move is a Fruit, it returns false because they are not selectable
-		if (grid.g()[i1][j1].getContent() instanceof Fruit || grid.g()[i2][j2].getContent() instanceof Fruit)
-				return false;
-				*/
 		return grid.tryMove(i1, j1, i2, j2);
 	}
 

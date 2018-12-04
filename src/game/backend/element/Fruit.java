@@ -4,6 +4,9 @@ public class Fruit extends Element {
 
     private FruitType type;
     private boolean isCleared = false;
+    private static int FRUIT_VALUE = 300;
+
+    public static int getFruitValue() { return FRUIT_VALUE; }
 
     public Fruit(){}
 

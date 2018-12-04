@@ -2,7 +2,9 @@ package game.backend.cell;
 
 import game.backend.Grid;
 import game.backend.element.Element;
+import game.backend.element.Fruit;
 import game.backend.element.Nothing;
+import game.backend.element.Wall;
 import game.backend.move.Direction;
 
 public class Cell {
@@ -86,6 +88,8 @@ public class Cell {
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();
 			if (this.hasFloor()) {
+				if (this.getContent() instanceof Fruit && around[Direction.DOWN.ordinal()].isMovable())
+					return true;
 				grid.tryRemove(this);
 				return true;
 			} else {

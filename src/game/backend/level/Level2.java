@@ -13,7 +13,11 @@ public class Level2 extends Grid {
 
     private static int FRUIT_AMOUNT = 6;
     private static int MAX_MOVES = 20;
-    private static double FRUIT_CHANCE = 0.04;
+    /*
+        With less than 1, it should spawn some in the beginning and some later.
+        I found out around 0.05 works best, spawning maybe 2 or 3 at the start.
+     */
+    private static double FRUIT_CHANCE = 0.05;
 
     private Cell wallCell;
     private Cell fruitGenCell;
