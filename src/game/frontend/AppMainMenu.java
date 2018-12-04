@@ -40,9 +40,6 @@ public class AppMainMenu extends VBox {
 
         this.primaryStage.setTitle("Candy Game");
 
-        StackPane bg = new StackPane();
-        //bg.setPrefSize(500,500);
-
         //  Add the menu bar on top of the screen
         getChildren().add(new AppMenu());
 
@@ -50,12 +47,13 @@ public class AppMainMenu extends VBox {
         menuTitle.setAlignment(Pos.TOP_CENTER);
         menuTitle.setFont(new Font(50));
         menuTitle.setPrefSize(500,300);
-        bg.getChildren().add(menuTitle);
+        this.getChildren().add(menuTitle);
 
         //  A button to go to each level
         Button level1Button = new Button("Level 1 - Normal");
         level1Button.setTextAlignment(TextAlignment.CENTER);
-
+        level1Button.setPrefSize(150,50);
+        level1Button.setAlignment(Pos.CENTER);
         level1Button.setOnAction(event -> {
             CandyGame game = new CandyGame(Level1.class);
             CandyFrame frame = new CandyFrame(game);
@@ -67,7 +65,9 @@ public class AppMainMenu extends VBox {
 
         Button level2Button = new Button("Level 2 - Fruits");
         level2Button.setTextAlignment(TextAlignment.CENTER);
-        level1Button.setOnAction(event -> {
+        level2Button.setPrefSize(150,50);
+        level2Button.setAlignment(Pos.CENTER);
+        level2Button.setOnAction(event -> {
             CandyGame game = new FruitCandyGame(Level2.class);
             CandyFrame frame = new CandyFrame(game);
             Scene scene = new Scene(frame);
@@ -78,7 +78,9 @@ public class AppMainMenu extends VBox {
 
         Button level3Button = new Button("Level 3 - Jelly");
         level3Button.setTextAlignment(TextAlignment.CENTER);
-        level1Button.setOnAction(event -> {
+        level3Button.setPrefSize(150,50);
+        level3Button.setAlignment(Pos.CENTER);
+        level3Button.setOnAction(event -> {
             /*
             CandyGame game = new CandyGame(Level1.class);
             CandyFrame frame = new CandyFrame(game);
@@ -90,13 +92,5 @@ public class AppMainMenu extends VBox {
         });
 
         this.getChildren().addAll(level1Button, level2Button, level3Button);
-        bg.getChildren().add(this);
-        /*
-        bg.getChildren().add(new Group(level1Button));
-        bg.getChildren().add(new Group(level2Button));
-        bg.getChildren().add(new Group(level3Button));
-
-        this.getChildren().add(bg);
-        */
     }
 }
