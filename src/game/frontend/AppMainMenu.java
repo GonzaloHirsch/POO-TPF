@@ -36,12 +36,14 @@ public class AppMainMenu extends VBox {
     private Stage primaryStage;
 
     public AppMainMenu(Stage primaryStage) {
+        this.getChildren().add(new AppMenu());
+
+        this.setPrefSize(65 * 9, 65 * 9);
         this.primaryStage = primaryStage;
 
         this.primaryStage.setTitle("Candy Game");
 
-        //  Add the menu bar on top of the screen
-        getChildren().add(new AppMenu());
+        this.setAlignment(Pos.CENTER);
 
         Label menuTitle = new Label("Candy Game");
         menuTitle.setAlignment(Pos.TOP_CENTER);

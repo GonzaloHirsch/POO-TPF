@@ -6,6 +6,7 @@ import game.backend.level.Level1;
 import game.backend.level.Level2;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameApp extends Application {
@@ -29,11 +30,19 @@ public class GameApp extends Application {
 		//	Trying to build a main menu for the game
 
 		AppMainMenu menu = new AppMainMenu(primaryStage);
-		Scene scene = new Scene(menu, 65 * 9, 65 * 9);
+		//Scene scene = new Scene(menu);
+		//menu.getChildren().add(new AppMenu());
+		Scene scene = new Scene(menu);
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();
 
 	}
+
+	/*
+		I found a bug when the user clicks the coordinates have an extra 0.5 in the x position.
+		Don't know how to fucking correct it.
+
+	 */
 
 }

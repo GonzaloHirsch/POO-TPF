@@ -20,7 +20,7 @@ public class Cell {
 	}
 
 	/*
-		Fills the arround array with the cells adyacent to the actual one
+		Fills the around array with the cells adyacent to the actual one
 	 */
 	public void setAround(Cell up, Cell down, Cell left, Cell right) {
 		this.around[Direction.UP.ordinal()] = up;

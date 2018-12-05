@@ -71,11 +71,14 @@ public class CandyFrame extends VBox {
 			//	Verification that stops the player from making moves if the game is over
 			if (!game().isFinished()){
 				if (lastPoint == null) {
-					lastPoint = translateCoords(event.getX(), event.getY());
+					lastPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
+					//if (lastPoint != null)
+					//	lastPoint = new Point2D(lastPoint.getX() - 0.5, lastPoint.getY());
 					System.out.println("Get first = " +  lastPoint);
 				} else {
-					Point2D newPoint = translateCoords(event.getX(), event.getY());
+					Point2D newPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
 					if (newPoint != null) {
+						//newPoint = new Point2D(newPoint.getX() - 0.5, newPoint.getY());
 						System.out.println("Get second = " +  newPoint);
 
 						//	Here it tries to make the swap
@@ -107,9 +110,15 @@ public class CandyFrame extends VBox {
 		return game;
 	}
 
+	/*
+		I added (y - 32.5) to compensate for the error when the mouse position is picked up.
+		There is an error of about CELL_SIZE/2, which is in the field of y.
+		Without the compensation, the game misreads the coordinates and fails to make some moves.
+	 */
 	private Point2D translateCoords(double x, double y) {
 		double i = x / CELL_SIZE;
-		double j = y / CELL_SIZE;
+		//double j = y / CELL_SIZE;
+		double j = (y - 32.5) / CELL_SIZE;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;
 	}
 
