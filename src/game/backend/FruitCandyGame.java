@@ -8,6 +8,9 @@ public class FruitCandyGame extends CandyGame {
         super(clazz);
     }
 
+    /*
+        This method is for counting the score as fruits already cleared
+     */
     @Override
     public void cellExplosion(Element e) {
         if (e instanceof Fruit)

@@ -114,6 +114,13 @@ public class CandyFrame extends VBox {
 		I added (y - 32.5) to compensate for the error when the mouse position is picked up.
 		There is an error of about CELL_SIZE/2, which is in the field of y.
 		Without the compensation, the game misreads the coordinates and fails to make some moves.
+
+		It switches the i and j coordinates to be consistent with the matrix notation.
+		For example (matrix):			For example (coordinates):
+			[(0,0)][(0,1)][(0,2)]			[(0,2)][(1,2)][(2,2)]
+			[(1,0)][(1,1)][(1,2)]			[(0,1)][(1,1)][(2,1)]
+			[(2,0)][(2,1)][(2,2)]			[(0,0)][(1,0)][(2,0)]
+		Notice the switch between the coordinate systems
 	 */
 	private Point2D translateCoords(double x, double y) {
 		double i = x / CELL_SIZE;

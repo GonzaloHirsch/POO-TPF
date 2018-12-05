@@ -15,16 +15,22 @@ public class ImageManager {
 		Creates a hashmap with all the images
 	 */
 	public ImageManager() {
+		//	Instances without color or type
+		Candy cy = new Candy();
+		Fruit ft = new Fruit();
 		WrappedCandy wc = new WrappedCandy();
 		VerticalStripedCandy vc = new VerticalStripedCandy();
 		HorizontalStripedCandy hc = new HorizontalStripedCandy();
+
 		images = new HashMap<>();
 		images.put(new Nothing().getKey(), new Image(IMAGE_PATH + "nothing.png"));
 		images.put(new Bomb().getKey(),  new Image(IMAGE_PATH + "bomb.png"));
 		images.put(new Wall().getKey(),  new Image(IMAGE_PATH + "wall.png"));
+
 		//	Simple color candies
 		for (CandyColor cc: CandyColor.values()) {
-			images.put(new Candy(cc).getFullKey(),   new Image(IMAGE_PATH + cc.toString().toLowerCase() + "Candy.png"));
+			cy.setColor(cc);
+			images.put(cy.getFullKey(),  new Image(IMAGE_PATH + cc.toString().toLowerCase() + "Candy.png"));
 		}
 		//	Wrapped color candies
 		for (CandyColor cc: CandyColor.values()) {
@@ -42,8 +48,9 @@ public class ImageManager {
 			images.put(hc.getFullKey(),  new Image(IMAGE_PATH + cc.toString().toLowerCase() + "HStripped.png"));
 		}
 		//	Types of fruits
-		for (FruitType ft: FruitType.values()){
-			images.put(new Fruit(ft).getFullKey(), new Image(IMAGE_PATH + ft.toString().toLowerCase() + ".png"));
+		for (FruitType fty: FruitType.values()){
+			ft.setType(fty);
+			images.put(ft.getFullKey(), new Image(IMAGE_PATH + ft.toString().toLowerCase() + ".png"));
 		}
 	}
 

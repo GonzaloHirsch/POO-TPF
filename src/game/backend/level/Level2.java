@@ -18,10 +18,10 @@ public class Level2 extends Grid {
         Suggested values:
             All 6 fruits in the beginning --> FRUIT_CHANCE = 0.2
             About 4 fruits in the beginning --> FRUIT_CHANCE = 0.09
-            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.05
-        I found out around 0.05 works best, spawning maybe 2 or 3 at the start.
+            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.03
+        I found out around 0.03 works best, spawning maybe 2 or 3 at the start.
      */
-    private static double FRUIT_CHANCE = 0.05;
+    private static double FRUIT_CHANCE = 0.03;
 
     private Cell wallCell;
     private Cell fruitGenCell;

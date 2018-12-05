@@ -11,6 +11,7 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -36,12 +37,14 @@ public class AppMainMenu extends VBox {
     private Stage primaryStage;
 
     public AppMainMenu(Stage primaryStage) {
-        this.getChildren().add(new AppMenu());
 
-        this.setPrefSize(65 * 9, 65 * 9);
+        //getChildren().add(new AppMenu());
+
         this.primaryStage = primaryStage;
 
-        this.primaryStage.setTitle("Candy Game");
+        this.setSpacing(10);
+
+        this.setPrefSize(65 * 9, 65 * 9);
 
         this.setAlignment(Pos.CENTER);
 
@@ -49,6 +52,8 @@ public class AppMainMenu extends VBox {
         menuTitle.setAlignment(Pos.TOP_CENTER);
         menuTitle.setFont(new Font(50));
         menuTitle.setPrefSize(500,300);
+        menuTitle.setPadding(new Insets(10,10,10,10));
+
         this.getChildren().add(menuTitle);
 
         //  A button to go to each level
@@ -92,6 +97,10 @@ public class AppMainMenu extends VBox {
             AppMainMenu.this.primaryStage.show();
             */
         });
+
+        level1Button.setPadding(new Insets(10,10,10,10));
+        level2Button.setPadding(new Insets(10,10,10,10));
+        level3Button.setPadding(new Insets(10,10,10,10));
 
         this.getChildren().addAll(level1Button, level2Button, level3Button);
     }
