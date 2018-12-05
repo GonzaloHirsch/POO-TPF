@@ -1,13 +1,17 @@
 package game.backend.level;
 
-//  Fruit Level
-
 import game.backend.GameState;
 import game.backend.Grid;
 import game.backend.cell.CandyGeneratorCell;
 import game.backend.cell.Cell;
 import game.backend.cell.FruitGeneratorCell;
 import game.backend.element.Wall;
+
+/*
+    FRUIT LEVEL
+    The player has to move the fruits to the bottom of the grid.
+    Win Condition: Clear all fruits
+ */
 
 public class Level2 extends Grid {
 
@@ -28,7 +32,7 @@ public class Level2 extends Grid {
 
     @Override
     protected GameState newState() {
-        return new Level2State(FRUIT_AMOUNT, MAX_MOVES);
+        return new Level2State(Level2.FRUIT_AMOUNT, Level2.MAX_MOVES);
     }
 
     @Override
@@ -69,19 +73,21 @@ public class Level2 extends Grid {
     }
 
     private class Level2State extends GameState {
-        private long fruitAmount;
+        private int fruitAmount;
         private long maxMoves;
 
-        public Level2State(long fruitAmount, int maxMoves) {
+        public Level2State(int fruitAmount, int maxMoves) {
             this.fruitAmount = fruitAmount;
             this.maxMoves = maxMoves;
         }
 
+        @Override
         public boolean gameOver() {
             return playerWon() || getMoves() >= this.maxMoves;
         }
 
         //  The player wins when all the fruits are cleared
+        @Override
         public boolean playerWon() {
             return getScore() >= this.fruitAmount;
         }
