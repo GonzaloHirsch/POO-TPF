@@ -23,12 +23,18 @@ public class Candy extends Element {
 	public boolean isMovable() {
 		return true;
 	}
-	
+
+	/*
+		It hashes by color
+	 */
 	@Override
 	public int hashCode() {
 		return ((color == null) ? 0 : color.hashCode());
 	}
-	
+
+	/*
+		It compares by color
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

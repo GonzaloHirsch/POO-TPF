@@ -50,7 +50,7 @@ public class ImageManager {
 		//	Types of fruits
 		for (FruitType fty: FruitType.values()){
 			ft.setType(fty);
-			images.put(ft.getFullKey(), new Image(IMAGE_PATH + ft.toString().toLowerCase() + ".png"));
+			images.put(ft.getFullKey(), new Image(IMAGE_PATH + fty.toString().toLowerCase() + ".png"));
 		}
 	}
 

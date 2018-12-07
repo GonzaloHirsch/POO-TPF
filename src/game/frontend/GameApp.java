@@ -38,7 +38,7 @@ public class GameApp extends Application {
 		//menu.getChildren().add(new AppMenu());
 
 		Scene scene = new Scene(menu);
-		((VBox)scene.getRoot()).getChildren().add(new AppMenu());
+		//((VBox)scene.getRoot()).getChildren().add(new AppMenu());
 		primaryStage.setResizable(false);
 		primaryStage.setScene(scene);
 		primaryStage.show();

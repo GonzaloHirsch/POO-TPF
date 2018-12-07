@@ -16,16 +16,16 @@ import game.backend.element.Wall;
 public class Level2 extends Grid {
 
     private static int FRUIT_AMOUNT = 6;
-    private static int MAX_MOVES = 20;
+    private static int MAX_MOVES = 30;
     /*
         This number (between 0 and 1) represents the chances of a fruit appearing.
         Suggested values:
             All 6 fruits in the beginning --> FRUIT_CHANCE = 0.2
             About 4 fruits in the beginning --> FRUIT_CHANCE = 0.09
-            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.03
-        I found out around 0.03 works best, spawning maybe 2 or 3 at the start.
+            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.04
+        I found out around 0.04 works best, spawning maybe 2 or 3 at the start.
      */
-    private static double FRUIT_CHANCE = 0.03;
+    private static double FRUIT_CHANCE = 0.04;
 
     private Cell wallCell;
     private Cell fruitGenCell;
@@ -70,6 +70,15 @@ public class Level2 extends Grid {
                 g()[i][j].setAround(g()[i-1][j],g()[i+1][j],g()[i][j-1],g()[i][j+1]);
             }
         }
+    }
+
+    @Override
+    public boolean tryMove(int i1, int j1, int i2, int j2) {
+        boolean ret;
+        if (ret = super.tryMove(i1, j1, i2, j2)) {
+            state().addMove();
+        }
+        return ret;
     }
 
     private class Level2State extends GameState {

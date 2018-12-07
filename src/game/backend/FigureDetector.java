@@ -7,8 +7,6 @@ import game.backend.element.Fruit;
 
 import java.awt.Point;
 
-//TODO understand figure checking to modify it
-
 public class FigureDetector {
 	
 	private Grid grid;

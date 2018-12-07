@@ -7,7 +7,10 @@ public class TwoBombMove extends Move {
 	public TwoBombMove(Grid grid) {
 		super(grid);
 	}
-	
+
+	/*
+		It clears the content of the whole grid
+	 */
 	@Override
 	public void removeElements() {
 		for(int i = 0; i < Grid.SIZE; i++) {

@@ -17,6 +17,8 @@ public class BombStrippedMove extends Move {
 	public void removeElements() {
 		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
 		CandyColor color = candy.getColor();
+
+		//	Replaces all the candies that have the same color as the matched candy with striped ones
 		for(int i = 0; i < Grid.SIZE; i++) {
 			for(int j = 0; j < Grid.SIZE; j++) {
 				if (candy.equals(get(i, j))) {
@@ -24,7 +26,14 @@ public class BombStrippedMove extends Move {
 				}
 			}
 		}
+
+		//	Updates grid with the new content
 		wasUpdated();
+
+		/*
+			Clears the content for each striped candy of the same color as the matched candy.
+			It uses clear content because it calls the explode method, so it explodes each striped color candy.
+		 */
 		for(int i = 0; i < Grid.SIZE; i++) {
 			for(int j = 0; j < Grid.SIZE; j++) {
 				if (candy.equals(get(i, j))) {
@@ -33,7 +42,10 @@ public class BombStrippedMove extends Move {
 			}
 		}
 	}
-	
+
+	/*
+		Creates striped candies of the given color in random directions
+	 */
 	private Candy createStriped(CandyColor color) {
 		Candy c;
 		if ((int)(Math.random() * 2) == 0) {
