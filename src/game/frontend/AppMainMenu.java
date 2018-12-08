@@ -25,6 +25,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -41,10 +42,14 @@ public class AppMainMenu extends VBox {
 
     public AppMainMenu(Stage primaryStage) {
 
+        //  Image source: "http://candycrushjelly.wikia.com/wiki/File:Ice_Cream_Alps_background.jpg"
+        this.setStyle("-fx-background-image: url(images/CGBackground.jpg);" +
+                "-fx-background-size: 585px 585px;");
+
         //getChildren().add(new AppMenu());
 
         AppMainMenu.primaryStage = primaryStage;
-        this.setStyle("-fx-background-color: #f1ff");
+        //this.setStyle("-fx-background-color: #f1ff");
 
         //VBox levels = new VBox();
 
@@ -83,13 +88,14 @@ public class AppMainMenu extends VBox {
         this.setAlignment(Pos.CENTER);
 
         Label menuTitle = new Label("Candy Game");
+        menuTitle.setId("title-label");
         menuTitle.setAlignment(Pos.TOP_CENTER);
         menuTitle.setFont(new Font(75));
         menuTitle.setPrefSize(500,300);
         menuTitle.setPadding(new Insets(10,10,10,10));
 
-        Label tipLabel = new Label("Si te paras sobre el botón del nivel, este muestra información sobre el mismo");
-        tipLabel.setFont(new Font(12));
+        Label tipLabel = new Label("Si te paras sobre el botón del nivel, verás más información!");
+        tipLabel.setId("info-label");
 
         //this.getChildren().add(menuTitle);
 
@@ -134,8 +140,9 @@ public class AppMainMenu extends VBox {
 
         //  Button for information
         Button infoButton = new Button("Acerca De");
+        infoButton.setId("option-button");
         infoButton.setTextAlignment(TextAlignment.CENTER);
-        infoButton.setPrefSize(110,25);
+        infoButton.setPrefSize(120,25);
         infoButton.setAlignment(Pos.CENTER);
         infoButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -149,6 +156,7 @@ public class AppMainMenu extends VBox {
 
         //  Button to quit application
         Button exitButton = new Button("Salir");
+        exitButton.setId("option-button");
         exitButton.setTextAlignment(TextAlignment.CENTER);
         exitButton.setPrefSize(90,25);
         exitButton.setAlignment(Pos.CENTER);
@@ -200,9 +208,11 @@ public class AppMainMenu extends VBox {
     }
 
     private void ButtonFormatting(Button button){
+        button.setId("level-button");
         button.setTextAlignment(TextAlignment.CENTER);
         button.setPrefSize(150,50);
         button.setAlignment(Pos.CENTER);
+
     }
 
     private void setIncets(Button button){

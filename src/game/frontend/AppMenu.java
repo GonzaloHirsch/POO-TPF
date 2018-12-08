@@ -36,6 +36,7 @@ public class AppMenu extends MenuBar {
                 if (result.get() == ButtonType.OK) {
                     AppMainMenu menu = new AppMainMenu(AppMainMenu.primaryStage);
                     Scene scene = new Scene(menu);
+                    scene.getStylesheets().add("styles/stylesheet.css");
                     AppMainMenu.primaryStage.setResizable(false);
                     AppMainMenu.primaryStage.setScene(scene);
                     AppMainMenu.primaryStage.show();
@@ -52,7 +53,7 @@ public class AppMenu extends MenuBar {
             alert.setHeaderText("Candy TPE");
             alert.setContentText("Cátedra POO 2018.\n" +
                     "Implementación Original: Laura Zabaleta (POO 2013).\n" +
-                    "Implementación Actual: Ignacio Villanueva - 59000 y Gonzalo Hirsch - 59089");
+                    "Implementación Actual: \n\tIgnacio Villanueva - 59000\n\tGonzalo Hirsch - 59089");
             alert.showAndWait();
         });
         help.getItems().add(aboutMenuItem);
