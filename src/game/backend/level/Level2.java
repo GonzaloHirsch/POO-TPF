@@ -15,8 +15,8 @@ import game.backend.element.Wall;
 
 public class Level2 extends Grid {
 
-    private static int FRUIT_AMOUNT = 60;
-    private static int MAX_MOVES = 300;
+    private static int FRUIT_AMOUNT = 6;
+    private static int MAX_MOVES = 30;
     /*
         This number (between 0 and 1) represents the chances of a fruit appearing.
         Suggested values:
@@ -33,6 +33,10 @@ public class Level2 extends Grid {
     @Override
     protected GameState newState() {
         return new Level2State(Level2.FRUIT_AMOUNT, Level2.MAX_MOVES);
+    }
+
+    public static String LevelInfo(){
+        return "You have " + MAX_MOVES + " moves to clear " + FRUIT_AMOUNT + " fruits to win.";
     }
 
     @Override

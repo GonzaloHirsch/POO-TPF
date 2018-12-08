@@ -39,7 +39,8 @@ public class FruitGeneratorCell extends Cell {
     @Override
     public Element getContent() {
         double r = Math.random();
-        if (FruitGeneratorCell.spawnedFruitAmount <= FruitGeneratorCell.maxFruitAmount && r < FruitGeneratorCell.fruitChance){
+        System.out.println(FruitGeneratorCell.spawnedFruitAmount);
+        if (FruitGeneratorCell.spawnedFruitAmount < FruitGeneratorCell.maxFruitAmount && r < FruitGeneratorCell.fruitChance){
             System.out.println("FUCK YES");
             int i = (int)(Math.random() * FruitType.values().length);
             FruitGeneratorCell.spawnedFruitAmount++;
