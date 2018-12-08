@@ -20,5 +20,7 @@
 *.rar
 
 # Intellij #
-.idea/*
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/misc.xml
 out/*
