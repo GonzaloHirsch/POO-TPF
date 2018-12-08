@@ -23,7 +23,7 @@ public class CandyGame implements GameListener {
 
 	public void initGame() {
 		try {
-			this.grid = (Grid)this.levelClass.newInstance();
+			this.grid = (Grid)this.levelClass.newInstance(); //TODO DEPRECATED
 		} catch(IllegalAccessException | InstantiationException e) {
 			System.out.println("ERROR AL INICIAR");
 		}

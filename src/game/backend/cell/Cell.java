@@ -1,10 +1,7 @@
 package game.backend.cell;
 
 import game.backend.Grid;
-import game.backend.element.Element;
-import game.backend.element.Fruit;
-import game.backend.element.Nothing;
-import game.backend.element.Wall;
+import game.backend.element.*;
 import game.backend.move.Direction;
 
 public class Cell {
@@ -54,6 +51,11 @@ public class Cell {
 				expandExplosion(explosionCascade); 
 			}
 			this.content = new Nothing();
+		} else {
+			if(content.getClass() == CagedCandy.class){
+                CagedCandy cagedCandy = (CagedCandy) content;   // If it's a caged candy, I replace it with a class candy with it's color
+                setContent(new Candy(cagedCandy.getColor()));
+            }
 		}
 	}
 	

@@ -2,14 +2,8 @@ package game.backend.level;
 
 //  Cage/Jaula Level
 
-import game.backend.GameState;
-import game.backend.Grid;
-import game.backend.cell.CandyGeneratorCell;
-import game.backend.cell.Cell;
-import game.backend.cell.FruitGeneratorCell;
-import game.backend.element.*;
-
-import java.io.Console;
+import game.backend.element.CagedCandy;
+import game.backend.element.Candy;
 
 public class Level3 extends Level1 {
 
@@ -32,7 +26,7 @@ public class Level3 extends Level1 {
 
     private void setCagedCandy(){
         for(int i = 1; i < SIZE-1; i++) {
-            g()[4][i].setContent(new CagedCandy((Candy) g()[4][i].getContent()));
+            g()[4][i].setContent(new CagedCandy(((Candy) g()[4][i].getContent()).getColor()));
         }
     }
 }
