@@ -17,6 +17,11 @@ public class Level3 extends Level1 {
     @Override
     public  void fillCells(){
         super.fillCells();
+    }
+
+    @Override
+    public void initialize(){
+        super.initialize();
         setCagedCandy();
     }
 
