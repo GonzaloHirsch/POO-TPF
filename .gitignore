@@ -20,5 +20,5 @@
 *.rar
 
 # Intellij #
-.idea/
-out/
+.idea/*
+out/*
