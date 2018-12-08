@@ -94,7 +94,7 @@ public class AppMainMenu extends VBox {
         menuTitle.setPrefSize(500,300);
         menuTitle.setPadding(new Insets(10,10,10,10));
 
-        Label tipLabel = new Label("Si te paras sobre el botón del nivel, verás más información!");
+        Label tipLabel = new Label("Hover on the level button for more info!");
         tipLabel.setId("info-label");
 
         //this.getChildren().add(menuTitle);
@@ -139,32 +139,32 @@ public class AppMainMenu extends VBox {
         level3Button.setTooltip(new Tooltip(Level3.LevelInfo()));
 
         //  Button for information
-        Button infoButton = new Button("Acerca De");
+        Button infoButton = new Button("About");
         infoButton.setId("option-button");
         infoButton.setTextAlignment(TextAlignment.CENTER);
-        infoButton.setPrefSize(120,25);
+        infoButton.setPrefSize(90,25);
         infoButton.setAlignment(Pos.CENTER);
         infoButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Acerca De");
+            alert.setTitle("About");
             alert.setHeaderText("Candy TPE");
             alert.setContentText("Cátedra POO 2018.\n" +
-                    "Implementación Original: Laura Zabaleta (POO 2013).\n" +
-                    "Implementación Actual: \n\tIgnacio Villanueva - 59000\n\tGonzalo Hirsch - 59089");
+                    "Original Implementation: Laura Zabaleta (POO 2013).\n" +
+                    "Actual Implementation: \n\tIgnacio Villanueva - 59000\n\tGonzalo Hirsch - 59089");
             alert.showAndWait();
         });
 
         //  Button to quit application
-        Button exitButton = new Button("Salir");
+        Button exitButton = new Button("Exit");
         exitButton.setId("option-button");
         exitButton.setTextAlignment(TextAlignment.CENTER);
         exitButton.setPrefSize(90,25);
         exitButton.setAlignment(Pos.CENTER);
         exitButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Salir");
-            alert.setHeaderText("Salir de la aplicación");
-            alert.setContentText("¿Está seguro que desea salir de la aplicación?");
+            alert.setTitle("Exit");
+            alert.setHeaderText("Exit application");
+            alert.setContentText("Are you sure you want to exit?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()) {
                 if (result.get() == ButtonType.OK) {

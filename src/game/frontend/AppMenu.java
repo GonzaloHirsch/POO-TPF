@@ -11,13 +11,13 @@ import java.util.Optional;
 public class AppMenu extends MenuBar {
 
     public AppMenu() {
-        Menu file = new Menu("Archivo");
-        MenuItem exitMenuItem = new MenuItem("Salir");
+        Menu file = new Menu("File");
+        MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Salir");
-            alert.setHeaderText("Salir de la aplicación");
-            alert.setContentText("¿Está seguro que desea salir de la aplicación?");
+            alert.setTitle("Exit");
+            alert.setHeaderText("Exit application");
+            alert.setContentText("Are you sure you want to exit?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()) {
                 if (result.get() == ButtonType.OK) {
@@ -25,12 +25,12 @@ public class AppMenu extends MenuBar {
                 }
             }
         });
-        MenuItem mainMenuItem = new MenuItem("Volver al Menu Principal");
+        MenuItem mainMenuItem = new MenuItem("Return to main menu");
         mainMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Menu Principal");
-            alert.setHeaderText("Volver al Menu Principal");
-            alert.setContentText("¿Está seguro que desea volver al menu?");
+            alert.setTitle("Main Menu");
+            alert.setHeaderText("Return to Main Menu");
+            alert.setContentText("Are you sure you want to return to the Main Menu?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()) {
                 if (result.get() == ButtonType.OK) {
@@ -45,15 +45,15 @@ public class AppMenu extends MenuBar {
             }
         });
         file.getItems().addAll(mainMenuItem, exitMenuItem);
-        Menu help = new Menu("Ayuda");
-        MenuItem aboutMenuItem = new MenuItem("Acerca De");
+        Menu help = new Menu("Help");
+        MenuItem aboutMenuItem = new MenuItem("About");
         aboutMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Acerca De");
+            alert.setTitle("About");
             alert.setHeaderText("Candy TPE");
             alert.setContentText("Cátedra POO 2018.\n" +
-                    "Implementación Original: Laura Zabaleta (POO 2013).\n" +
-                    "Implementación Actual: \n\tIgnacio Villanueva - 59000\n\tGonzalo Hirsch - 59089");
+                    "Original implementation: Laura Zabaleta (POO 2013).\n" +
+                    "Actual implementation: \n\tIgnacio Villanueva - 59000\n\tGonzalo Hirsch - 59089");
             alert.showAndWait();
         });
         help.getItems().add(aboutMenuItem);

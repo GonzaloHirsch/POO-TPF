@@ -1,15 +1,23 @@
+/*  FONT IMPORT  */
 @font-face {
     font-family: "Amsterdam";
     src: url("../fonts/Amsterdam.ttf")format("truetype");
 }
 
+/*
+    Inset values are in order:
+        top, right, bottom, left
+ */
+
+/*  TITLE LABEL  */
 #title-label{
     -fx-font-family: "Amsterdam";
-    -fx-effect: dropshadow( gaussian , rgb(0, 0, 0), 10,0.4,1,8 );
-    -fx-text-fill: linear-gradient(#e4b8de, #ff6fbd);
+    -fx-effect: dropshadow( gaussian , rgb(0, 0, 0), 10,0.4,2,8 );
+    -fx-text-fill: linear-gradient(/*#e4b8de*/ #ff12a6, #ffa3e8, #ff12a6, white, #ff12a6);
     -fx-font-size: 55px;
 }
 
+/*  INFO LABEL  */
 #info-label{
     -fx-font-family: "Amsterdam";
     -fx-effect: dropshadow( gaussian , rgba(41, 41, 41, 0.75), 10,0,0,2 );
@@ -17,61 +25,47 @@
     -fx-font-size: 14px;
 }
 
+/*  LEVEL BUTTON  */
 #level-button {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
-    -fx-background-radius: 8;
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #c34913 0%, #b03610 100%),
-        #ba4124,
-        #f3883a,
-        radial-gradient(center 50% 50%, radius 100%, #e8763e, #de5832);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    -fx-background-radius: 8; /* Radius of the button itself */
+    -fx-background-color:
+        linear-gradient(#a6206b, #851e5b), /* Bottom part color */
+        radial-gradient(radius 100%, #d61a8b, #ca147c); /* Top part color */
+    -fx-text-fill: linear-gradient(black, black);
     -fx-font-weight: bold;
-    -fx-font-size: 1.1em;
+    -fx-font-size: 14px;
 }
 #level-button:hover {
-    -fx-background-color: 
-        linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
-        #9d4024,
-        #d86e3a,
-        radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+    -fx-background-color:
+            linear-gradient(#c3267e, #b42a7b), /* Bottom part color */
+            radial-gradient(radius 100%, #ff10a8, #ed37a2); /* Top part color */
 }
 #level-button:pressed {
     -fx-padding: 10 15 13 15;
-    -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
-}
-#level-button Text {
-    -fx-fill: white;
-    -fx-effect: dropshadow( gaussian , #a30000 , 0,0,0,2 );
+    -fx-background-insets: 2 0 0 0, 2 0 3 0, 2 0 4 0, 2 0 5 0;
 }
 
 
+/*  OPTION BUTTON  */
 #option-button {
     -fx-padding: 8 15 15 15;
     -fx-background-insets: 0,0 0 5 0, 0 0 6 0, 0 0 7 0;
     -fx-background-radius: 8;
     -fx-background-color:
-            linear-gradient(from 0% 93% to 0% 100%, #824113 0%, #633112 100%),
-            #7f3d22,
-            #904833,
-            radial-gradient(center 50% 50%, radius 100%, #a85432, #af4729);
-    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+            linear-gradient(#a6206b, #851e5b), /* Bottom part color */
+            radial-gradient(radius 100%, #d61a8b, #ca147c); /* Top part color */
+    -fx-text-fill: linear-gradient(black, black);
     -fx-font-weight: bold;
-    -fx-font-size: 1.1em;
+    -fx-font-size: 14px;
 }
 #option-button:hover {
     -fx-background-color:
-            linear-gradient(from 0% 93% to 0% 100%, #a34313 0%, #903b12 100%),
-            #9d4024,
-            #d86e3a,
-            radial-gradient(center 50% 50%, radius 100%, #ea7f4b, #c54e2c);
+            linear-gradient(#c3267e, #b42a7b), /* Bottom part color */
+            radial-gradient(radius 100%, #ff10a8, #ed37a2); /* Top part color */
 }
 #option-button:pressed {
     -fx-padding: 10 15 13 15;
     -fx-background-insets: 2 0 0 0,2 0 3 0, 2 0 4 0, 2 0 5 0;
-}
-#option-button Text {
-    -fx-fill: white;
-    -fx-effect: dropshadow( gaussian , #020102, 0,0,0,2 );
 }
