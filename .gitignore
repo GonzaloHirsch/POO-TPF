@@ -21,7 +21,6 @@
 
 # Intellij #
 .idea/vcs.xml
-.idea/workspace.xml
 .idea/misc.xml
 out/*
 .idea/workspace.xml
