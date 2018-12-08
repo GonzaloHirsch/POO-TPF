@@ -4,6 +4,7 @@ import game.backend.Figure;
 import game.backend.FigureDetector;
 import game.backend.Grid;
 import game.backend.element.Fruit;
+import game.backend.element.Nothing;
 
 public class CandyMove extends Move {
 
@@ -22,11 +23,11 @@ public class CandyMove extends Move {
 	public boolean internalValidation() {
 		this.detector = new FigureDetector(grid);
 
-		if (this.grid.getCell(i1,j1).getContent() instanceof Fruit)
+		if (this.grid.getCell(i1,j1).getContent() instanceof Fruit || this.grid.getCell(i1,j1).getContent() instanceof Nothing)
 			f1 = null;
 		else
 			f1 = detector.checkFigure(i1, j1);
-		if (this.grid.getCell(i2,j2).getContent() instanceof Fruit)
+		if (this.grid.getCell(i2,j2).getContent() instanceof Fruit || this.grid.getCell(i1,j1).getContent() instanceof Nothing)
 			f2 = null;
 		else
 			f2 = detector.checkFigure(i2, j2);

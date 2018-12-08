@@ -6,7 +6,7 @@ import game.backend.element.CagedCandy;
 import game.backend.element.Candy;
 
 public class Level3 extends Level1 {
-
+    protected static int REQUIRED_SCORE = 5000;
 
     @Override
     public  void fillCells(){

@@ -8,6 +8,8 @@ public class FruitCandyGame extends CandyGame {
         super(clazz);
     }
 
+    public int getMovesLeft() { return state.getMaxMoves() - state.getMoves();};
+
     /*
         This method is for counting the score as fruits already cleared
      */

@@ -39,6 +39,8 @@ public class Level2 extends Grid {
         return "You have " + MAX_MOVES + " moves to clear " + FRUIT_AMOUNT + " fruits to win.";
     }
 
+    public int getMaxMoves(){  return MAX_MOVES;}
+
     @Override
     protected void fillCells() {
 
@@ -87,12 +89,14 @@ public class Level2 extends Grid {
 
     private class Level2State extends GameState {
         private int fruitAmount;
-        private long maxMoves;
+        private int maxMoves;
 
         public Level2State(int fruitAmount, int maxMoves) {
             this.fruitAmount = fruitAmount;
             this.maxMoves = maxMoves;
         }
+
+        public int getMaxMoves() { return this.maxMoves; };
 
         @Override
         public boolean gameOver() {

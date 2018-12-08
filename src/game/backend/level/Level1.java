@@ -71,12 +71,14 @@ public class Level1 extends Grid {
 	
 	private class Level1State extends GameState {
 		private long requiredScore;
-		private long maxMoves;
+		private int maxMoves;
 		
 		public Level1State(long requiredScore, int maxMoves) {
 			this.requiredScore = requiredScore;
 			this.maxMoves = maxMoves;
 		}
+
+		public int getMaxMoves() { return this.maxMoves; };
 
 		@Override
 		public boolean gameOver() {
