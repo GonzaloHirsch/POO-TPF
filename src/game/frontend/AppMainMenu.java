@@ -7,6 +7,7 @@ import game.backend.cell.Cell;
 import game.backend.element.Element;
 import game.backend.level.Level1;
 import game.backend.level.Level2;
+import game.backend.level.Level3;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -94,10 +95,8 @@ public class AppMainMenu extends VBox {
         Button level3Button = new Button("Level 3 - Jelly");
         ButtonFormatting(level3Button);
         level3Button.setOnAction(event -> {
-            /*
             CandyGame game = new CandyGame(Level3.class);
-            LevelLoader(game);
-            */
+            LevelLoader(game, AppMainMenu.primaryStage);
         });
 
         //  Button for information
