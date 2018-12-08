@@ -63,6 +63,9 @@ public abstract class Grid {
 		while (i >= 0) {
 			int j = 0;
 			while (j < SIZE) {
+				//	In case a fruit is on the bottom of the board, it removes it
+				if (g[SIZE - 1][j].getContent() instanceof Fruit)
+					this.clearContent(SIZE - 1, j);
 				if (g[i][j].isEmpty()) {
 					if (g[i][j].fallUpperContent()) {
 						i = SIZE;
@@ -92,7 +95,7 @@ public abstract class Grid {
 		//	Gets the type of movement made
 		Move move = moveMaker.getMove(i1, j1, i2, j2);
 		swapContent(i1, j1, i2, j2);
-		if (move.isValid()) {
+		if (move != null && move.isValid()) {
 			move.removeElements();
 			fallElements();
 			return true;

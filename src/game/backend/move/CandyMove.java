@@ -21,6 +21,7 @@ public class CandyMove extends Move {
 	@Override
 	public boolean internalValidation() {
 		this.detector = new FigureDetector(grid);
+
 		if (this.grid.getCell(i1,j1).getContent() instanceof Fruit)
 			f1 = null;
 		else

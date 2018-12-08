@@ -62,20 +62,21 @@ public class MoveMaker {
 		map.put(new Bomb().getKey() + new VerticalStripedCandy().getKey(), new BombStrippedMove(grid));
 		map.put(new Bomb().getKey() + new WrappedCandy().getKey(), new BombWrappedMove(grid));
 		map.put(new Bomb().getKey() + new Bomb().getKey(), new TwoBombMove(grid));
-		map.put(new Bomb().getKey() + new Fruit().getKey(), new InvalidMove(grid));	//	Fruit moves
+		//map.put(new Bomb().getKey() + new Fruit().getKey(), new InvalidMove(grid));	//	Fruit moves
 
 		// Fruit moves
 		map.put(new Fruit().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new HorizontalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new VerticalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new WrappedCandy().getKey(), new CandyMove(grid));
-		map.put(new Fruit().getKey() + new Bomb().getKey(), new InvalidMove(grid));
-		map.put(new Fruit().getKey() + new Fruit().getKey(), new InvalidMove(grid));
+		//map.put(new Fruit().getKey() + new Bomb().getKey(), new InvalidMove(grid));
+		//map.put(new Fruit().getKey() + new Fruit().getKey(), new InvalidMove(grid));
 	}
 	
 	public Move getMove(int i1, int j1, int i2, int j2) {
 		Move move = map.get(grid.get(i1, j1).getKey() + grid.get(i2, j2).getKey());
-		move.setCoords(i1, j1, i2, j2);
+		if (move != null)
+			move.setCoords(i1, j1, i2, j2);
 		return move;
 	}
 

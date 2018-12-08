@@ -23,10 +23,13 @@ public class CandyGeneratorCell extends Cell {
 	public Element getContent() {
 
 		int i = (int)(Math.random() * CandyColor.values().length);
-		//return new Candy(CandyColor.values()[i]);
+		return new Candy(CandyColor.values()[i]);
+		/*
 		WrappedCandy ret = new WrappedCandy();
+
 		ret.setColor(CandyColor.values()[i]);
 		return ret;
+		*/
 
 	}
 	

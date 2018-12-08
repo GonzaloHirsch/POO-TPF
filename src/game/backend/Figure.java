@@ -6,10 +6,10 @@ import java.awt.Point;
 
 public enum Figure {
 
-	// 5 vertical candies --> Bomb
+	// 5 horizontal candies --> Bomb
 	F6(new Point[]{ new Point(0,-2), new Point(0,-1), new Point(0,1), new Point(0,2)}, 240, Bomb.class, false),
 
-	// 5 horizontal candies --> Bomb
+	// 5 vertical candies --> Bomb
 	F15(new Point[]{ new Point(-2,0), new Point(-1,0), new Point(1,0), new Point(2,0)}, 15, Bomb.class, false),
 
 	// 4 vertical candies --> Vertical Striped Candy

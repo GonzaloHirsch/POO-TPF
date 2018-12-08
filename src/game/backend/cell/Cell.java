@@ -83,7 +83,7 @@ public class Cell {
 	 */
 	public boolean fallUpperContent() {
 		Cell up = around[Direction.UP.ordinal()];
-		if (this.isEmpty() && !up.isEmpty() && up.isMovable()) {
+		if ((this.isEmpty() || this.getContent() instanceof Fruit) && !up.isEmpty() && up.isMovable()) {
 			//	Retrieves the content from the cell above itself and sets it to itself
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();

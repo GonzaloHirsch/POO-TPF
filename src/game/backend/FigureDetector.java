@@ -39,7 +39,10 @@ public class FigureDetector {
 		for (Checkpoint cp: Checkpoint.values()) {
 			int newI = i + cp.getI();
 			int newJ = j + cp.getJ();
+
+			//	Verification to see if its going out of bounds
 			if (newI >= 0 && newI < Grid.SIZE && newJ >= 0 && newJ < Grid.SIZE) {
+				//	If it has the same color
 				if (curr.equals(grid.get(newI, newJ))) {
 					acum += cp.getValue();
 				}
