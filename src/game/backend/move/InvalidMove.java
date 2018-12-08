@@ -2,6 +2,8 @@ package game.backend.move;
 
 import game.backend.Grid;
 
+//TODO delete this class
+
 /*
     This move is used to represent all the moves that are not valid.
     Such as:
