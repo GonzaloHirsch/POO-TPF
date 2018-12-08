@@ -27,11 +27,12 @@ public class Level3 extends Level1 {
 
     @Override
     public boolean tryMove(int i1, int j1, int i2, int j2) {
-        System.out.println(g()[i1][j1].getContent().getKey());
         return super.tryMove(i1,j1,i2,j2);
     }
 
     private void setCagedCandy(){
-        g()[3][3].setContent(new CagedCandy(new Candy(CandyColor.BLUE)));
+        for(int i = 1; i < SIZE-1; i++) {
+            g()[4][i].setContent(new CagedCandy((Candy) g()[4][i].getContent()));
+        }
     }
 }
