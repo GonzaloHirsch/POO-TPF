@@ -136,7 +136,7 @@ public class AppMainMenu extends VBox {
             CandyGame game = new CandyGame(Level3.class);
             LevelLoader(game, AppMainMenu.primaryStage);
         });
-        //level3Button.setTooltip(new Tooltip(Level3.LevelInfo()));
+        level3Button.setTooltip(new Tooltip(Level3.LevelInfo()));
 
         //  Button for information
         Button infoButton = new Button("Acerca De");
