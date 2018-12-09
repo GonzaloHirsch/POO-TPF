@@ -61,9 +61,14 @@ public class ImageManager {
 		return images.get(e.getFullKey());
 	}
 
+	/*
+	If it's an overlay, we use the FullKey to get the overlaid image and the Key to get the overlay image\
+	Considering we only use the cage as overlay we could have simply returned the cage image,
+	but this way we allow for future expansion, such as the jelly, to be easier
+	*/
 	public Image getOverlay(Element e){
 	    if(e.isOverlay())
-	        return new Image(IMAGE_PATH + "cage.png");
+	        return images.get(e.getKey());
 	    return null;
     }
 

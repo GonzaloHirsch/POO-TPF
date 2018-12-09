@@ -2,25 +2,35 @@ package game.backend.level;
 
 //  Cage/Jaula Level
 
+import game.backend.GameState;
 import game.backend.element.CagedCandy;
 import game.backend.element.Candy;
+import game.backend.element.WrappedCandy;
 
 public class Level3 extends Level1 {
-    protected static int REQUIRED_SCORE = 5000;
+    private static int MAX_MOVES= 30;
+    private int cageCount = 0;
 
     @Override
     public  void fillCells(){
         super.fillCells();
     }
 
+
+    @Override
+    protected GameState newState() {
+        return new Leve13State(cageCount, MAX_MOVES);
+    }
+
     @Override
     public void initialize(){
         super.initialize();
         setCagedCandy();
+        System.out.println(cageCount);
     }
 
     public static String LevelInfo(){
-        return "You have " + MAX_MOVES + " moves to reach " + REQUIRED_SCORE + " points to win, with the added difficulty of having to free candy from their cages.";
+        return "You have " + MAX_MOVES + "to remove all the cages.";
     }
 
     @Override
@@ -31,6 +41,29 @@ public class Level3 extends Level1 {
     private void setCagedCandy(){
         for(int i = 1; i < SIZE-1; i++) {
             g()[4][i].setContent(new CagedCandy(((Candy) g()[4][i].getContent()).getColor()));
+            cageCount++;
+        }
+    }
+
+    private class Leve13State extends GameState {
+        private long cageCount;
+        private int maxMoves;
+
+        public Leve13State(long cageCount, int maxMoves) {
+            this.cageCount = cageCount;
+            this.maxMoves = maxMoves;
+        }
+
+        public int getMaxMoves() { return this.maxMoves; };
+
+        @Override
+        public boolean gameOver() {
+            return playerWon() || getMoves() >= maxMoves;
+        }
+
+        @Override
+        public boolean playerWon() {
+            return getScore() >= cageCount;
         }
     }
 }

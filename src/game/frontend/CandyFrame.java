@@ -89,11 +89,7 @@ public class CandyFrame extends VBox {
 						//	Here it tries to make the swap
 						game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
 
-						String message;
-						//	Message showing the score of the player
-						String scoreMessage = ((Long)game().getScore()).toString() + " Points";
-						String movesMessage = game().getMovesLeft() + " Moves Left";
-						message = movesMessage + " - " + scoreMessage;
+						String message = game().toString();
 
 						//	Checking if game is over
 						if (game().isFinished()) {

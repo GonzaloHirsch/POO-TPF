@@ -2,37 +2,21 @@ package game.frontend;
 
 import game.backend.CandyGame;
 import game.backend.FruitCandyGame;
-import game.backend.GameListener;
-import game.backend.cell.Cell;
-import game.backend.element.Element;
 import game.backend.level.Level1;
 import game.backend.level.Level2;
 import game.backend.level.Level3;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import game.backend.move.CageCandyGame;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Point2D;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionListener;
 import java.util.Optional;
 
 public class AppMainMenu extends VBox {
@@ -133,7 +117,7 @@ public class AppMainMenu extends VBox {
         Button level3Button = new Button("Level 3 - Cage");
         ButtonFormatting(level3Button);
         level3Button.setOnAction(event -> {
-            CandyGame game = new CandyGame(Level3.class);
+            CandyGame game = new CageCandyGame(Level3.class);
             LevelLoader(game, AppMainMenu.primaryStage);
         });
         level3Button.setTooltip(new Tooltip(Level3.LevelInfo()));

@@ -18,4 +18,9 @@ public class FruitCandyGame extends CandyGame {
         if (e instanceof Fruit)
             this.state.addScore(e.getScore());
     }
+
+    @Override
+    public String toString() {
+        return getMovesLeft() + " Moves Left - " + getScore() + " Fruits";
+    }
 }

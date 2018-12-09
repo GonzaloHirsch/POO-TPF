@@ -51,13 +51,15 @@ public class Cell {
 				expandExplosion(explosionCascade); 
 			}
 			this.content = new Nothing();
-			grid.wasUpdated();
 		} else {
 			if(content.getClass() == CagedCandy.class){
-                CagedCandy cagedCandy = (CagedCandy) content;   // If it's a caged candy, I replace it with a class candy with it's color
+				grid.cellExplosion(content);
+				CagedCandy cagedCandy = (CagedCandy) content;   // If it's a caged candy, I replace it with a class candy of it's color
                 setContent(new Candy(cagedCandy.getColor()));
             }
+
 		}
+		grid.wasUpdated();		// Update the grid when clearing content
 	}
 	
 	private void expandExplosion(Direction[] explosion) {
@@ -77,6 +79,11 @@ public class Cell {
 			Element ret = content;
 			this.content = new Nothing();
 			return ret;
+		} else {
+			if(content.getClass() == CagedCandy.class){
+				CagedCandy cagedCandy = (CagedCandy) content;   // If it's a caged candy, I replace it with a class candy of it's color
+				setContent(new Candy(cagedCandy.getColor()));
+			}
 		}
 		return null;
 	}

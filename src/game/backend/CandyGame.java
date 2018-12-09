@@ -23,12 +23,12 @@ public class CandyGame implements GameListener {
 
 	public void initGame() {
 		try {
-			this.grid = (Grid)this.levelClass.newInstance(); //TODO DEPRECATED
+			this.grid = (Grid)this.levelClass.newInstance();
 		} catch(IllegalAccessException | InstantiationException e) {
 			System.out.println("ERROR AL INICIAR");
 		}
-		this.state = this.grid.createState();
 		this.grid.initialize();
+		this.state = this.grid.createState();
 		addGameListener(this);
 	}
 	
@@ -75,4 +75,8 @@ public class CandyGame implements GameListener {
 		//
 	}
 
+	@Override
+	public String toString() {
+		return getMovesLeft() + " Moves Left - " + getScore() + " Points";
+	}
 }
