@@ -1,4 +1,4 @@
-package game.backend;
+package game.backend.gametypes;
 
 import game.backend.element.Element;
 import game.backend.element.Fruit;

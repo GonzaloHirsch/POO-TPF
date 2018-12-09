@@ -1,5 +1,8 @@
-package game.backend;
+package game.backend.gametypes;
 
+import game.backend.GameListener;
+import game.backend.GameState;
+import game.backend.Grid;
 import game.backend.cell.Cell;
 import game.backend.element.Element;
 import game.backend.element.Fruit;

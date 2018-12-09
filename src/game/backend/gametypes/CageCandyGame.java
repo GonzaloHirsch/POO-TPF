@@ -1,6 +1,5 @@
-package game.backend.move;
+package game.backend.gametypes;
 
-import game.backend.CandyGame;
 import game.backend.element.CagedCandy;
 import game.backend.element.Element;
 

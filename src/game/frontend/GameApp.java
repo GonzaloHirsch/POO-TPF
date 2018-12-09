@@ -1,12 +1,7 @@
 package game.frontend;
 
-import game.backend.CandyGame;
-import game.backend.FruitCandyGame;
-import game.backend.level.Level1;
-import game.backend.level.Level2;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameApp extends Application {

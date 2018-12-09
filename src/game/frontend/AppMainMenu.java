@@ -1,11 +1,11 @@
 package game.frontend;
 
-import game.backend.CandyGame;
-import game.backend.FruitCandyGame;
+import game.backend.gametypes.CandyGame;
+import game.backend.gametypes.FruitCandyGame;
 import game.backend.level.Level1;
 import game.backend.level.Level2;
 import game.backend.level.Level3;
-import game.backend.move.CageCandyGame;
+import game.backend.gametypes.CageCandyGame;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

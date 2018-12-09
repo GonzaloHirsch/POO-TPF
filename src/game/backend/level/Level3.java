@@ -3,9 +3,7 @@ package game.backend.level;
 //  Cage/Jaula Level
 
 import game.backend.GameState;
-import game.backend.element.CagedCandy;
-import game.backend.element.Candy;
-import game.backend.element.WrappedCandy;
+import game.backend.element.*;
 
 public class Level3 extends Level1 {
     private static int MAX_MOVES= 30;
@@ -41,6 +39,7 @@ public class Level3 extends Level1 {
     private void setCagedCandy(){
         for(int i = 1; i < SIZE-1; i++) {
             g()[4][i].setContent(new CagedCandy(((Candy) g()[4][i].getContent()).getColor()));
+
             cageCount++;
         }
     }
