@@ -2,9 +2,14 @@ package game.backend.cell;
 
 import game.backend.Grid;
 import game.backend.element.*;
+import game.backend.move.BombMove;
 import game.backend.move.Direction;
+import game.backend.move.Move;
+import game.backend.move.MoveMaker;
 
 public class Cell {
+
+	private int BOMB_FUCKERS = 0;
 	
 	private Grid grid;
 	private Cell[] around = new Cell[Direction.values().length];
@@ -44,13 +49,23 @@ public class Cell {
 	
 	public void clearContent() {
 		if (content.isMovable()) {
-			Direction[] explosionCascade = content.explode();
-			grid.cellExplosion(content);
-			this.content = new Nothing();
-			if (explosionCascade != null) {
-				expandExplosion(explosionCascade); 
+			if (content instanceof Bomb){
+				BOMB_FUCKERS++;
+				System.out.println(BOMB_FUCKERS);
+				BombMove bombMove = new BombMove(grid);
+				int r = (int)(Math.random() * CandyColor.values().length);
+				bombMove.removeElements(new Candy(CandyColor.values()[r]));
+				this.content = new Nothing();
+			} else {
+				Direction[] explosionCascade = content.explode();
+				grid.cellExplosion(content);
+				this.content = new Nothing();
+				if (explosionCascade != null) {
+					expandExplosion(explosionCascade);
+				}
+
+				this.content = new Nothing();
 			}
-			this.content = new Nothing();
 		} else {
 			if(content.getClass() == CagedCandy.class){
 				grid.cellExplosion(content);

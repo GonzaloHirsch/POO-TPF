@@ -14,7 +14,7 @@ import game.backend.element.Wall;
  */
 public class Level2 extends Grid {
 
-    private static int FRUIT_AMOUNT = 6;
+    private static int FRUIT_AMOUNT = 5;
     private static int MAX_MOVES = 30;
 
     /**

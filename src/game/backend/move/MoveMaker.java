@@ -79,5 +79,4 @@ public class MoveMaker {
 			move.setCoords(i1, j1, i2, j2);
 		return move;
 	}
-
 }

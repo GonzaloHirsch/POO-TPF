@@ -79,7 +79,7 @@ public class CandyFrame extends VBox {
 					lastPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
 					//if (lastPoint != null)
 					//	lastPoint = new Point2D(lastPoint.getX() - 0.5, lastPoint.getY());
-					System.out.println("Get first = " +  lastPoint);
+					//System.out.println("Get first = " +  lastPoint);
 
 					//	Makes the chosen cell glow
 					addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0.5);
@@ -87,7 +87,7 @@ public class CandyFrame extends VBox {
 					Point2D newPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
 					if (newPoint != null) {
 						//newPoint = new Point2D(newPoint.getX() - 0.5, newPoint.getY());
-						System.out.println("Get second = " +  newPoint);
+						//System.out.println("Get second = " +  newPoint);
 
 						//	It removes the glow from the cell
 						addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0);
@@ -119,7 +119,7 @@ public class CandyFrame extends VBox {
 	private CandyGame game() {
 		return game;
 	}
-	
+
 
 	private void addGlow(int i, int j, double value){
 		Cell cell = CandyFrame.this.game.get(i, j);
