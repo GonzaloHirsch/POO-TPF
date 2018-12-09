@@ -4,19 +4,16 @@ import game.backend.Grid;
 import game.backend.element.*;
 import game.backend.move.BombMove;
 import game.backend.move.Direction;
-import game.backend.move.Move;
-import game.backend.move.MoveMaker;
 
 public class Cell {
 
-	private int BOMB_FUCKERS = 0;
-	
 	private Grid grid;
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
+
 		//	Initializes all cells with nothing
 		this.content = new Nothing();
 	}
@@ -38,7 +35,8 @@ public class Cell {
 	public boolean isMovable(){
 		return content.isMovable();
 	}
-	
+
+	//	All elements are solid except for Nothing
 	public boolean isEmpty() {
 		return !content.isSolid();
 	}
@@ -50,12 +48,23 @@ public class Cell {
 	public void clearContent() {
 		if (content.isMovable()) {
 			if (content instanceof Bomb){
-				BOMB_FUCKERS++;
-				System.out.println(BOMB_FUCKERS);
+
 				BombMove bombMove = new BombMove(grid);
+
+				//	Candy with a random color
 				int r = (int)(Math.random() * CandyColor.values().length);
 				bombMove.removeElements(new Candy(CandyColor.values()[r]));
 				this.content = new Nothing();
+			} else if (content instanceof Fruit){
+				if (!this.around[Direction.DOWN.ordinal()].isMovable()) {
+				/*
+					In case a fruit is tried to be exploded.
+					It checks if there is a wall bellow it, in which case it explodes.
+					If there isn't a wall, the fruit is not exploded by the effect of other combos
+				 */
+					grid.cellExplosion(content);
+					this.content = new Nothing();
+				}
 			} else {
 				Direction[] explosionCascade = content.explode();
 				grid.cellExplosion(content);
@@ -67,7 +76,7 @@ public class Cell {
 				this.content = new Nothing();
 			}
 		} else {
-			if(content.getClass() == CagedCandy.class){
+			if(content instanceof CagedCandy){
 				grid.cellExplosion(content);
 				CagedCandy cagedCandy = (CagedCandy) content;   // If it's a caged candy, I replace it with a class candy of it's color
                 setContent(new Candy(cagedCandy.getColor()));
@@ -95,7 +104,7 @@ public class Cell {
 			this.content = new Nothing();
 			return ret;
 		} else {
-			if(content.getClass() == CagedCandy.class){
+			if(content instanceof CagedCandy){
 				CagedCandy cagedCandy = (CagedCandy) content;   // If it's a caged candy, I replace it with a class candy of it's color
 				setContent(new Candy(cagedCandy.getColor()));
 			}
@@ -109,6 +118,7 @@ public class Cell {
 	public boolean fallUpperContent() {
 		Cell up = around[Direction.UP.ordinal()];
 		if ((this.isEmpty() || this.getContent() instanceof Fruit) && !up.isEmpty() && up.isMovable()) {
+
 			//	Retrieves the content from the cell above itself and sets it to itself
 			this.content = up.getAndClearContent();
 			grid.wasUpdated();

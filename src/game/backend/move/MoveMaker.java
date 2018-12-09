@@ -62,15 +62,12 @@ public class MoveMaker {
 		map.put(new Bomb().getKey() + new VerticalStripedCandy().getKey(), new BombStrippedMove(grid));
 		map.put(new Bomb().getKey() + new WrappedCandy().getKey(), new BombWrappedMove(grid));
 		map.put(new Bomb().getKey() + new Bomb().getKey(), new TwoBombMove(grid));
-		//map.put(new Bomb().getKey() + new Fruit().getKey(), new InvalidMove(grid));	//	Fruit moves
 
 		// Fruit moves
 		map.put(new Fruit().getKey() + new Candy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new HorizontalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new VerticalStripedCandy().getKey(), new CandyMove(grid));
 		map.put(new Fruit().getKey() + new WrappedCandy().getKey(), new CandyMove(grid));
-		//map.put(new Fruit().getKey() + new Bomb().getKey(), new InvalidMove(grid));
-		//map.put(new Fruit().getKey() + new Fruit().getKey(), new InvalidMove(grid));
 	}
 	
 	public Move getMove(int i1, int j1, int i2, int j2) {
