@@ -3,11 +3,11 @@ package game.backend.level;
 //  Cage/Jaula Level
 
 import game.backend.GameState;
+import game.backend.cell.Cell;
 import game.backend.element.*;
 
 public class Level3 extends Level1 {
     private static int MAX_MOVES= 30;
-    private int cageCount = 0;
 
     @Override
     public  void fillCells(){
@@ -17,14 +17,13 @@ public class Level3 extends Level1 {
 
     @Override
     protected GameState newState() {
-        return new Leve13State(cageCount, MAX_MOVES);
+        return new Leve13State(MAX_MOVES);
     }
 
     @Override
     public void initialize(){
         super.initialize();
         setCagedCandy();
-        System.out.println(cageCount);
     }
 
     public static String LevelInfo(){
@@ -38,19 +37,27 @@ public class Level3 extends Level1 {
 
     private void setCagedCandy(){
         for(int i = 1; i < SIZE-1; i++) {
-            g()[4][i].setContent(new CagedCandy(((Candy) g()[4][i].getContent()).getColor()));
-
-            cageCount++;
+            convertToCaged(4, i);
         }
     }
 
+    private void convertToCaged(int i, int j){
+        if (g()[i][j].getContent() instanceof Candy)
+            g()[i][j].setContent(new CagedCandy(((Candy) g()[i][j].getContent()).getColor()));
+    }
+
     private class Leve13State extends GameState {
-        private long cageCount;
+        private long cageCount = 0;
         private int maxMoves;
 
-        public Leve13State(long cageCount, int maxMoves) {
-            this.cageCount = cageCount;
+        private Leve13State(int maxMoves) {
             this.maxMoves = maxMoves;
+            for(Cell[] i : g()){
+                for(Cell c : i){
+                    if(c.getContent().getClass() == CagedCandy.class)
+                        cageCount++;
+                }
+            }
         }
 
         public int getMaxMoves() { return this.maxMoves; };

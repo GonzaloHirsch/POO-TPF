@@ -23,7 +23,13 @@ public class BoardPanel extends TilePane {
 		this.cells = new Group[rows][columns];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-			    cells[i][j] = new Group(new ImageView(), new ImageView());
+				ImageView mainImage = new ImageView();
+				mainImage.setFitHeight(65);			// To ensure that the image size doesn't exceed the cell size
+				mainImage.setFitWidth(65);
+				ImageView overlay = new ImageView();
+				overlay.setFitHeight(65);
+				overlay.setFitWidth(65);
+			    cells[i][j] = new Group(mainImage, overlay);
 				getChildren().add(cells[i][j]);
 			}
 		}

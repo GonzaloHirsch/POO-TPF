@@ -1,18 +1,13 @@
 package game.frontend;
 
-import game.backend.CandyGame;
 import game.backend.GameListener;
 import game.backend.cell.Cell;
-import game.backend.element.CagedCandy;
-import game.backend.element.Candy;
-import game.backend.element.CandyColor;
 import game.backend.element.Element;
-
+import game.backend.gametypes.CandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -132,7 +127,7 @@ public class CandyFrame extends VBox {
 
 
 	/*
-		I added (y - 32.5) to compensate for the error when the mouse position is picked up.
+		I added (y - 25) to compensate for menu bar ontop.
 		There is an error of about CELL_SIZE/2, which is in the field of y.
 		Without the compensation, the game misreads the coordinates and fails to make some moves.
 
@@ -144,9 +139,10 @@ public class CandyFrame extends VBox {
 		Notice the switch between the coordinate systems
 	 */
 	private Point2D translateCoords(double x, double y) {
+		System.out.println(x + " - " + y);
 		double i = x / CELL_SIZE;
 		//double j = y / CELL_SIZE;
-		double j = (y - 32.5) / CELL_SIZE;
+		double j = (y - 25) / CELL_SIZE;
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;
 	}
 
