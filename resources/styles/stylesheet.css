@@ -4,6 +4,11 @@
     src: url("../fonts/Amsterdam.ttf")format("truetype");
 }
 
+.menu, .menu-item, .menu-bar, .context-menu {
+    -fx-background-color: #ffa3e8;
+}
+
+
 /*
     Inset values are in order:
         top, right, bottom, left

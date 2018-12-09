@@ -80,11 +80,17 @@ public class CandyFrame extends VBox {
 					//if (lastPoint != null)
 					//	lastPoint = new Point2D(lastPoint.getX() - 0.5, lastPoint.getY());
 					System.out.println("Get first = " +  lastPoint);
+
+					//	Makes the chosen cell glow
+					addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0.5);
 				} else {
 					Point2D newPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
 					if (newPoint != null) {
 						//newPoint = new Point2D(newPoint.getX() - 0.5, newPoint.getY());
 						System.out.println("Get second = " +  newPoint);
+
+						//	It removes the glow from the cell
+						addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0);
 
 						//	Here it tries to make the swap
 						game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
@@ -113,6 +119,17 @@ public class CandyFrame extends VBox {
 	private CandyGame game() {
 		return game;
 	}
+	
+
+	private void addGlow(int i, int j, double value){
+		Cell cell = CandyFrame.this.game.get(i, j);
+		Element element = cell.getContent();
+
+		Image image = images.getImage(element);
+
+		boardPanel.setGlowingImage(i, j, value, image);
+	}
+
 
 	/*
 		I added (y - 32.5) to compensate for the error when the mouse position is picked up.

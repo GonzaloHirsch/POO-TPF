@@ -15,8 +15,8 @@ public class BombWrappedMove extends Move {
 
 	/**
 	 * 	The original code was changed because it was not making the right removal of elements.
-	 * 	It should turn every color-matching candy into a wrapped candy and then explode them.
-	 * 	It wasn't doing that, we verified that the correct move was the described above with the
+	 * 	It should destroy all candies matching the color of the wrapped one, and also destroy all
+	 * 	candies of another random color, we verified that the correct move was the described above with the
 	 * 	original Candy Crush game.
 	 * 	The original code is kept for comparison.
 	 * 	It cycles the grid 2 times.
@@ -32,6 +32,7 @@ public class BombWrappedMove extends Move {
 		clearContent(i1, j1);
 		clearContent(i2, j2);
 
+		/*
 		//	Replaces all candies with wrapped ones of the same color
 		for(int i = 0; i < Grid.SIZE; i++) {
 			for(int j = 0; j < Grid.SIZE; j++) {
@@ -40,11 +41,9 @@ public class BombWrappedMove extends Move {
 				}
 			}
 		}
-
+		*/
 		//	Updates grid with the new content
-		wasUpdated();
 
-		/*	ORIGINAL CODE
 		//	Clears all candy matching the color
 		for(int i = 0; i < Grid.SIZE; i++) {
 			for(int j = 0; j < Grid.SIZE; j++) {
@@ -54,6 +53,11 @@ public class BombWrappedMove extends Move {
 			}
 		}
 
+		wasUpdated();
+
+		int r = (int)(Math.random() * CandyColor.values().length);
+		Candy c = new Candy(CandyColor.values()[r]);
+/*
 		for(int i = -1; i < 2; i++) {
 			for(int j = -1; j < 2; j++) {
 				if (i1 + i >= 0 && i1 + i < Grid.SIZE && j1 + j >= 0 && j1 + j < Grid.SIZE) {
@@ -70,10 +74,10 @@ public class BombWrappedMove extends Move {
 		}
 		*/
 
-		//	Clears content of updated grid, wrapped candies now explode
+		//	Clears another random candy color
 		for(int i = 0; i < Grid.SIZE; i++) {
 			for(int j = 0; j < Grid.SIZE; j++) {
-				if (candy.equals(get(i, j))) {
+				if (c.equals(get(i, j))) {
 					clearContent(i, j);
 				}
 			}

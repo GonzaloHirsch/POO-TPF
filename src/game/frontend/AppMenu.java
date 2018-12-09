@@ -8,6 +8,13 @@ import javafx.scene.control.*;
 
 import java.util.Optional;
 
+/**
+ *  Changes:
+ *      added more tabs to be able to go back to the menu
+ *      menu language to match the name of the game in english
+ *      background color to match the game's style
+ */
+
 public class AppMenu extends MenuBar {
 
     public AppMenu() {
@@ -44,6 +51,10 @@ public class AppMenu extends MenuBar {
                 }
             }
         });
+
+        //mainMenuItem.setStyle("-fx-background-color: #ffa3e8");
+        //exitMenuItem.setStyle("-fx-background-color: #ffa3e8");
+
         file.getItems().addAll(mainMenuItem, exitMenuItem);
         Menu help = new Menu("Help");
         MenuItem aboutMenuItem = new MenuItem("About");
@@ -56,8 +67,17 @@ public class AppMenu extends MenuBar {
                     "Actual implementation: \n\tIgnacio Villanueva - 59000\n\tGonzalo Hirsch - 59089");
             alert.showAndWait();
         });
+
+        //aboutMenuItem.setStyle("-fx-background-color: #ffa3e8");
+
+
         help.getItems().add(aboutMenuItem);
         getMenus().addAll(file, help);
+
+        this.getStylesheets().add("styles/stylesheet.css");
+
+        //  Background color of the bar
+        //this.setStyle("-fx-background-color: #ffa3e8");
     }
 
 }

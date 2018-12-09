@@ -4,6 +4,7 @@ import game.backend.element.Element;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -33,6 +34,12 @@ public class BoardPanel extends TilePane {
 		mainImage.setImage(image);
         ImageView overlayImage = (ImageView) cells[row][column].getChildren().get(1);
         overlayImage.setImage(overlay);
+	}
+
+	public void setGlowingImage(int row, int column, double value, Image image){
+		ImageView mainImage = (ImageView) cells[row][column].getChildren().get(0);
+		mainImage.setImage(image);
+		mainImage.setEffect(new Glow(value));
 	}
 
 }
