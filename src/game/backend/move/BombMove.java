@@ -1,8 +1,10 @@
 package game.backend.move;
 
 import game.backend.Grid;
+import game.backend.cell.Cell;
 import game.backend.element.Bomb;
 import game.backend.element.Candy;
+import game.backend.element.Element;
 
 public class BombMove extends Move {
 	
@@ -23,6 +25,18 @@ public class BombMove extends Move {
 		clearContent(i1, j1);
 		clearContent(i2, j2);
 
+		//	Cycles through the entire grid
+		for(int i = 0; i < Grid.SIZE; i++) {
+			for(int j = 0; j < Grid.SIZE; j++) {
+				//	It compares the color of each candy with the original one
+				if (candy.equals(get(i, j))) {
+					clearContent(i, j);
+				}
+			}
+		}
+	}
+
+	public void removeElements(Candy candy) {
 		//	Cycles through the entire grid
 		for(int i = 0; i < Grid.SIZE; i++) {
 			for(int j = 0; j < Grid.SIZE; j++) {
