@@ -7,7 +7,10 @@ public class WrappedStripedMove extends Move {
 	public WrappedStripedMove(Grid grid) {
 		super(grid);
 	}
-	
+
+	/**
+	 * 	It clears three complete rows and columns like a striped candy
+	 */
 	@Override
 	public void removeElements() {
 		for(int i = -1; i < 2; i++) {

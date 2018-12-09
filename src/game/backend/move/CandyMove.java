@@ -18,7 +18,11 @@ public class CandyMove extends Move {
 		super(grid);
 		this.grid = grid;
 	}
-	
+
+	/**
+	 * It has to validate the cell doesn't contain a fruit or nothing.
+	 * @return
+	 */
 	@Override
 	public boolean internalValidation() {
 		this.detector = new FigureDetector(grid);

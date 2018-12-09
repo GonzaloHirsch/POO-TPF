@@ -94,8 +94,14 @@ public abstract class Grid {
 	public boolean tryMove(int i1, int j1, int i2, int j2) {
 		//	Gets the type of movement made
 		Move move = moveMaker.getMove(i1, j1, i2, j2);
-		swapContent(i1, j1, i2, j2);
+
+		/*
+			The swap has to be made before the move verification because it can't check
+			If its moved from here, the game BREAKS
+		 */
+        swapContent(i1, j1, i2, j2);
 		if (move != null && move.isValid()) {
+			//swapContent(i1, j1, i2, j2);
 			move.removeElements();
 			fallElements();
 			return true;

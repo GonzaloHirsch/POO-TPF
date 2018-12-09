@@ -8,9 +8,10 @@ public class TwoBombMove extends Move {
 		super(grid);
 	}
 
-	/*
-		It clears the content of the whole grid
-	 */
+    /**
+     *  It clears the content of the whole grid.
+     *  It cycles 1 the entire grid.
+     */
 	@Override
 	public void removeElements() {
 		for(int i = 0; i < Grid.SIZE; i++) {

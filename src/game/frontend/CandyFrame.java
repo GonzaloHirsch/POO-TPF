@@ -86,7 +86,6 @@ public class CandyFrame extends VBox {
 						//newPoint = new Point2D(newPoint.getX() - 0.5, newPoint.getY());
 						System.out.println("Get second = " +  newPoint);
 
-						//HERE WE CAN SHOW MOVES
 						//	Here it tries to make the swap
 						game().tryMove((int)lastPoint.getX(), (int)lastPoint.getY(), (int)newPoint.getX(), (int)newPoint.getY());
 

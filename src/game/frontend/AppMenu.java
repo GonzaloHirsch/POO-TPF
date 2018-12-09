@@ -11,7 +11,7 @@ import java.util.Optional;
 public class AppMenu extends MenuBar {
 
     public AppMenu() {
-        Menu file = new Menu("File");
+        Menu file = new Menu("Options");
         MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

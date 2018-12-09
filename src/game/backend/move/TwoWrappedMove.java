@@ -8,13 +8,14 @@ public class TwoWrappedMove extends Move {
 		super(grid);
 	}
 
-	/*
-		It checks which coordinate is "smaller" to see from where it starts to remove
+	/**
+	 * 	It removes a rectangle around both wrapped candies.
 	 */
 	@Override
 	public void removeElements() {
 		int currI, currJ;
 
+		//	Destroys both candies
 		clearContent(i1, j1);
 		clearContent(i2, j2);
 
@@ -39,11 +40,13 @@ public class TwoWrappedMove extends Move {
 		}
 	}
 
-	/*
-		Removes the sides of the two wrapped candies.
-		Verifications are needed not to go over the size of the array.
-		This was happening in the original implementation.
-		This solves the issue.
+	/**
+	 * Removes the sides of the two wrapped candies.
+	 * Verifications are needed not to go over the size of the array.
+	 * This was happening in the original implementation.
+	 * This solves the issue.
+	 * @param i
+	 * @param j
 	 */
 	private void SideRemover(int i, int j){
 		if (j-1 < Grid.SIZE && 0 <= j-1)

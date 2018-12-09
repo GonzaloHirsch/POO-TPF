@@ -12,10 +12,17 @@ public class BombStrippedMove extends Move {
 	public BombStrippedMove(Grid grid) {
 		super(grid);
 	}
-	
+
+	/**
+	 * 	It destroys all color-matching candies by turning them into striped candies and
+	 * 	then exploding them all.
+	 * 	Cycles entire grid twice.
+	 */
 	@Override
 	public void removeElements() {
+		//	It needs to get the candy for the color comparison
 		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
+		//	Takes the color to then create the new candy of the same color
 		CandyColor color = candy.getColor();
 
 		//	Replaces all the candies that have the same color as the matched candy with striped ones
@@ -43,8 +50,11 @@ public class BombStrippedMove extends Move {
 		}
 	}
 
-	/*
-		Creates striped candies of the given color in random directions
+	/**
+	 * Creates a striped candy with the given color.
+	 * The direction is random.
+	 * @param color
+	 * @return
 	 */
 	private Candy createStriped(CandyColor color) {
 		Candy c;

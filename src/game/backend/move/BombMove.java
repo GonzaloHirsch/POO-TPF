@@ -10,11 +10,13 @@ public class BombMove extends Move {
 		super(grid);
 	}
 
-	/*
-		It destroys all the candies matching the color of the matched candy
+	/**
+		It destroys all the candies matching the color of the matched candy.
+	 	Cycles the entire grid.
 	 */
 	@Override
 	public void removeElements() {
+		//	It needs to get the candy for the color comparison
 		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
 
 		//	Clears candy and bomb

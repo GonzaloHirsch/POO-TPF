@@ -7,25 +7,25 @@ import game.backend.cell.Cell;
 import game.backend.cell.FruitGeneratorCell;
 import game.backend.element.Wall;
 
-/*
+/**
     FRUIT LEVEL
     The player has to move the fruits to the bottom of the grid.
     Win Condition: Clear all fruits
  */
-
 public class Level2 extends Grid {
 
     private static int FRUIT_AMOUNT = 6;
     private static int MAX_MOVES = 30;
-    /*
+
+    /**
         This number (between 0 and 1) represents the chances of a fruit appearing.
         Suggested values:
             All 6 fruits in the beginning --> FRUIT_CHANCE = 0.2
             About 4 fruits in the beginning --> FRUIT_CHANCE = 0.09
-            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.04
-        I found out around 0.04 works best, spawning maybe 2 or 3 at the start.
+            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.05
+        I found out around 0.05 works best, spawning maybe 2 or 3 at the start.
      */
-    private static double FRUIT_CHANCE = 0.04;
+    private static double FRUIT_CHANCE = 0.05;
 
     private Cell wallCell;
     private Cell fruitGenCell;

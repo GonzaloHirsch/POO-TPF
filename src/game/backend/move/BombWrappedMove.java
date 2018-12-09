@@ -12,12 +12,23 @@ public class BombWrappedMove extends Move {
 	public BombWrappedMove(Grid grid) {
 		super(grid);	
 	}
-	
+
+	/**
+	 * 	The original code was changed because it was not making the right removal of elements.
+	 * 	It should turn every color-matching candy into a wrapped candy and then explode them.
+	 * 	It wasn't doing that, we verified that the correct move was the described above with the
+	 * 	original Candy Crush game.
+	 * 	The original code is kept for comparison.
+	 * 	It cycles the grid 2 times.
+	 */
 	@Override
 	public void removeElements() {
+		//	It needs the candy for the color comparison
 		Candy candy = (Candy) (get(i1, j1) instanceof Bomb ? get(i2, j2) : get(i1, j1));
+		//	It needs the color to create the new candy with it
 		CandyColor color = candy.getColor();
 
+		//	Destroys the bomb and the wrapped candy
 		clearContent(i1, j1);
 		clearContent(i2, j2);
 
@@ -69,8 +80,10 @@ public class BombWrappedMove extends Move {
 		}
 	}
 
-	/*
-		Creates striped candies of the given color in random directions
+	/**
+	 * Creates a new wrapped candy with the given color.
+	 * @param color
+	 * @return
 	 */
 	private Candy createWrapped(CandyColor color) {
 		Candy c = new WrappedCandy();
