@@ -67,11 +67,8 @@ public abstract class Grid {
 			while (j < SIZE) {
 				//	In case a fruit is on the bottom of the board, it removes it
 				if (g[SIZE - 1][j].getContent() instanceof Fruit) {
-					System.out.println("MY MOVES ARE " + state.getMoves());
-					if (state == null) {
-						System.out.println("FUCK THIS");
+					if (state == null)
 						FruitGeneratorCell.incrementSpawnedFruits(-1);
-					}
 					this.clearContent(SIZE - 1, j);
 				}
 				if (g[i][j].isEmpty()) {

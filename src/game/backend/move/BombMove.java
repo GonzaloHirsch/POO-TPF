@@ -25,27 +25,17 @@ public class BombMove extends Move {
 		clearContent(i1, j1);
 		clearContent(i2, j2);
 
-		//	Cycles through the entire grid
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				//	It compares the color of each candy with the original one
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
+		//	Remove all candies matching the color of the given one
+		removeElements(candy);
 	}
 
+	/**
+	 * 	Method to remove all candies that match the color of the passed candy
+	 * 	It's used when a bomb is exploded by another candy.
+	 * @param candy		candy used as reference to compare colors
+	 */
 	public void removeElements(Candy candy) {
-		//	Cycles through the entire grid
-		for(int i = 0; i < Grid.SIZE; i++) {
-			for(int j = 0; j < Grid.SIZE; j++) {
-				//	It compares the color of each candy with the original one
-				if (candy.equals(get(i, j))) {
-					clearContent(i, j);
-				}
-			}
-		}
+		this.candyColorRemover(candy);
 	}
 
 }

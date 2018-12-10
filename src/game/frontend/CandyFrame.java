@@ -1,7 +1,6 @@
 package game.frontend;
 
 import game.backend.FrontEndCallbacks;
-import game.backend.GameListener;
 import game.backend.cell.Cell;
 import game.backend.element.*;
 
@@ -10,11 +9,10 @@ import game.backend.gametypes.CandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class CandyFrame extends VBox {
@@ -23,18 +21,18 @@ public class CandyFrame extends VBox {
 
 	private BoardPanel boardPanel;
 	private ScorePanel scorePanel;
-	private ImageManager images;
+	private ImageManager imageManager;
 	private Point2D lastPoint;
 	private CandyGame game;
 
-	public CandyFrame(CandyGame game) {
+	public CandyFrame(CandyGame game, Stage primaryStage, ImageManager imageManager) {
 		this.game = game;
-		getChildren().add(new AppMenu());
-		images = new ImageManager();
+		getChildren().add(new AppMenu(primaryStage));
+		this.imageManager = imageManager;
 
 		//	Board Panel
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
-		boardPanel.setBoardBackground(images.getImage(new Nothing()));
+		boardPanel.setBoardBackground(this.imageManager.getImage(new Nothing()));
 		getChildren().add(boardPanel);
 
 		//	Score Panel
@@ -55,8 +53,8 @@ public class CandyFrame extends VBox {
 						int finalJ = j;
 						Cell cell = CandyFrame.this.game.get(i, j);
 						Element element = cell.getContent();
-						Image image = images.getImage(element);
-						Image overlay = images.getOverlay(element);
+						Image image = CandyFrame.this.imageManager.getImage(element);
+						Image overlay = CandyFrame.this.imageManager.getOverlay(element);
 						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, null, null)));
 						timeLine.getKeyFrames().add(new KeyFrame(frameTime, e -> boardPanel.setImage(finalI, finalJ, image, overlay)));
 					}
@@ -84,19 +82,14 @@ public class CandyFrame extends VBox {
 			//	Verification that stops the player from making moves if the game is over
 			if (!game().isFinished()){
 				if (lastPoint == null) {
-					lastPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
-					//if (lastPoint != null)
-					//	lastPoint = new Point2D(lastPoint.getX() - 0.5, lastPoint.getY());
-					//System.out.println("Get first = " +  lastPoint);
+					lastPoint = translateCoords(event.getX(), event.getY());
 
 					//	Makes the chosen cell glow
 					if (lastPoint != null)
 						addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0.5);
 				} else {
-					Point2D newPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
+					Point2D newPoint = translateCoords(event.getX(), event.getY());
 					if (newPoint != null) {
-						//newPoint = new Point2D(newPoint.getX() - 0.5, newPoint.getY());
-						//System.out.println("Get second = " +  newPoint);
 
 						//	It removes the glow from the cell
 						addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0);
@@ -134,7 +127,7 @@ public class CandyFrame extends VBox {
 		Cell cell = CandyFrame.this.game.get(i, j);
 		Element element = cell.getContent();
 
-		Image image = images.getImage(element);
+		Image image = imageManager.getImage(element);
 
 		boardPanel.setGlowingImage(i, j, value, image);
 	}

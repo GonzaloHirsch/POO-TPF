@@ -11,6 +11,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -21,16 +23,17 @@ import java.util.Optional;
 
 public class AppMainMenu extends VBox {
 
-    //It shouldnt be public, but it doesnt work the app menu if its private, i have to think a better way
-    public static Stage primaryStage;
+    private Stage primaryStage;
+    private ImageManager imageManager;
 
-    public AppMainMenu(Stage primaryStage) {
+    public AppMainMenu(Stage primaryStage, ImageManager imageManager) {
 
         //  Setting the background image
         this.setStyle("-fx-background-image: url(images/CGBackground.jpg);" +
                 "-fx-background-size: 585px 585px;");
 
-        AppMainMenu.primaryStage = primaryStage;
+        this.primaryStage = primaryStage;
+        this.imageManager = imageManager;
 
         //  Hbox to contain the exit and about buttons
         HBox topBox = new HBox();
@@ -62,7 +65,7 @@ public class AppMainMenu extends VBox {
         levelButtonFormatting(level1Button);
         level1Button.setOnAction(event -> {
             CandyGame game = new CandyGame(Level1.class);
-            LevelLoader(game, AppMainMenu.primaryStage);
+            LevelLoader(game, this.primaryStage, this.imageManager);
         });
         level1Button.setTooltip(new Tooltip(Level1.LevelInfo()));
 
@@ -70,7 +73,7 @@ public class AppMainMenu extends VBox {
         levelButtonFormatting(level2Button);
         level2Button.setOnAction(event -> {
             CandyGame game = new FruitCandyGame(Level2.class);
-            LevelLoader(game, AppMainMenu.primaryStage);
+            LevelLoader(game, this.primaryStage, this.imageManager);
         });
         level2Button.setTooltip(new Tooltip(Level2.LevelInfo()));
 
@@ -78,7 +81,7 @@ public class AppMainMenu extends VBox {
         levelButtonFormatting(level3Button);
         level3Button.setOnAction(event -> {
             CandyGame game = new CageCandyGame(Level3.class);
-            LevelLoader(game, AppMainMenu.primaryStage);
+            LevelLoader(game, this.primaryStage, this.imageManager);
         });
         level3Button.setTooltip(new Tooltip(Level3.LevelInfo()));
 
@@ -132,8 +135,8 @@ public class AppMainMenu extends VBox {
      * @param candyGame     level class to be loaded
      * @param primaryStage  primary stage to be able to load the level
      */
-    private void LevelLoader(CandyGame candyGame, Stage primaryStage){
-        CandyFrame frame = new CandyFrame(candyGame);
+    private void LevelLoader(CandyGame candyGame, Stage primaryStage, ImageManager imageManager){
+        CandyFrame frame = new CandyFrame(candyGame, primaryStage, imageManager);
         Scene scene = new Scene(frame);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);

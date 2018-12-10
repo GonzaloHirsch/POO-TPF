@@ -2,8 +2,6 @@ package game.frontend;
 
 import game.backend.element.*;
 import javafx.scene.image.Image;
-
-import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,13 +11,13 @@ public class ImageManager {
 	private Map<String, Image> images;
 
 	/*
-		Creates a hashmap with all the images
+		Creates a map with all the images mapped to strings
 	 */
 	public ImageManager() {
 		//	Instances without color or type
 		Candy cy = new Candy();
 		Fruit ft = new Fruit();
-		CagedCandy xc = new CagedCandy();
+		//CagedCandy xc = new CagedCandy();
 		WrappedCandy wc = new WrappedCandy();
 		VerticalStripedCandy vc = new VerticalStripedCandy();
 		HorizontalStripedCandy hc = new HorizontalStripedCandy();

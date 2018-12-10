@@ -82,11 +82,13 @@ public enum Figure {
 		this.replacementClass = null;
 	}
 
+	/*
 	Figure(int value){
 		this.points = null;
 		this.value = value;
 		this.replacementClass = null;
 	}
+	*/
 	
 	public Point[] getPoints() {
 		return points;

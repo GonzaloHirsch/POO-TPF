@@ -34,8 +34,10 @@ public class FigureDetector {
 	private int readCheckpoints(int i, int j) {
 		Element curr = grid.get(i,j);
 		int acum = 0;
+		/*
 		if (grid.g()[i][j].getContent() instanceof Fruit)
 			return Fruit.getFruitValue();
+			*/
 		for (Checkpoint cp: Checkpoint.values()) {
 			int newI = i + cp.getI();
 			int newJ = j + cp.getJ();

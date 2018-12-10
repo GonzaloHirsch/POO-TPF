@@ -19,6 +19,10 @@ public class Level1 extends Grid {
 		return new Level1State(REQUIRED_SCORE, MAX_MOVES);
 	}
 
+	/**
+	 * 	Method to get the level information in order to be displayed in the tooltips
+	 * @return	A string containing all important level info
+	 */
 	public static String LevelInfo(){
 		return "You have " + MAX_MOVES + " moves to reach " + REQUIRED_SCORE + " points to win.";
 	}

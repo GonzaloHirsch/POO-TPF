@@ -3,8 +3,7 @@ package game.frontend;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
-//import javafx.scene.cont
+import javafx.stage.Stage;
 
 import java.util.Optional;
 
@@ -16,8 +15,11 @@ import java.util.Optional;
  */
 
 public class AppMenu extends MenuBar {
+    private Stage primaryStage;
 
-    public AppMenu() {
+    public AppMenu(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+
         Menu file = new Menu("Options");
         MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setOnAction(event -> {
@@ -41,19 +43,16 @@ public class AppMenu extends MenuBar {
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()) {
                 if (result.get() == ButtonType.OK) {
-                    AppMainMenu menu = new AppMainMenu(AppMainMenu.primaryStage);
+                    AppMainMenu menu = new AppMainMenu(this.primaryStage);
                     Scene scene = new Scene(menu);
                     scene.getStylesheets().add("styles/stylesheet.css");
-                    AppMainMenu.primaryStage.setResizable(false);
-                    AppMainMenu.primaryStage.setScene(scene);
-                    AppMainMenu.primaryStage.show();
+                    this.primaryStage.setResizable(false);
+                    this.primaryStage.setScene(scene);
+                    this.primaryStage.show();
 
                 }
             }
         });
-
-        //mainMenuItem.setStyle("-fx-background-color: #ffa3e8");
-        //exitMenuItem.setStyle("-fx-background-color: #ffa3e8");
 
         file.getItems().addAll(mainMenuItem, exitMenuItem);
         Menu help = new Menu("Help");
@@ -68,16 +67,11 @@ public class AppMenu extends MenuBar {
             alert.showAndWait();
         });
 
-        //aboutMenuItem.setStyle("-fx-background-color: #ffa3e8");
-
-
         help.getItems().add(aboutMenuItem);
         getMenus().addAll(file, help);
 
+        //  Applying the CSS sheet so it picks up the style
         this.getStylesheets().add("styles/stylesheet.css");
-
-        //  Background color of the bar
-        //this.setStyle("-fx-background-color: #ffa3e8");
     }
 
 }

@@ -1,6 +1,7 @@
 package game.backend.move;
 
 import game.backend.Grid;
+import game.backend.element.Candy;
 import game.backend.element.Element;
 
 public abstract class Move {
@@ -24,6 +25,16 @@ public abstract class Move {
 			return internalValidation();
 		}
 		return false;
+	}
+
+	protected void candyColorRemover(Candy candy){
+		for(int i = 0; i < Grid.SIZE; i++) {
+			for(int j = 0; j < Grid.SIZE; j++) {
+				if (candy.equals(get(i, j))) {
+					clearContent(i, j);
+				}
+			}
+		}
 	}
 	
 	protected boolean internalValidation() {

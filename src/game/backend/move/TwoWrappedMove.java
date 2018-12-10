@@ -45,8 +45,8 @@ public class TwoWrappedMove extends Move {
 	 * Verifications are needed not to go over the size of the array.
 	 * This was happening in the original implementation.
 	 * This solves the issue.
-	 * @param i
-	 * @param j
+	 * @param i		i coordinate of the rightmost element
+	 * @param j		j coordinate of the rightmost element
 	 */
 	private void SideRemover(int i, int j){
 		if (j-1 < Grid.SIZE && 0 <= j-1)

@@ -22,10 +22,10 @@ public class Level2 extends Grid {
         Suggested values:
             All 6 fruits in the beginning --> FRUIT_CHANCE = 0.2
             About 4 fruits in the beginning --> FRUIT_CHANCE = 0.09
-            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.05
-        I found out around 0.05 works best, spawning maybe 2 or 3 at the start.
+            About 2 fruits in the beginning --> FRUIT_CHANCE = 0.04
+        I found out around 0.04 works best, spawning maybe 2 or 3 at the start.
      */
-    private static double FRUIT_CHANCE = 0.05;
+    private static double FRUIT_CHANCE = 0.04;
 
     private Cell wallCell;
     private Cell fruitGenCell;
@@ -35,11 +35,13 @@ public class Level2 extends Grid {
         return new Level2State(Level2.FRUIT_AMOUNT, Level2.MAX_MOVES);
     }
 
+    /**
+     * 	Method to get the level information in order to be displayed in the tooltips
+     * @return	A string containing all important level info
+     */
     public static String LevelInfo(){
         return "You have " + MAX_MOVES + " moves to clear " + FRUIT_AMOUNT + " fruits to win.";
     }
-
-    public int getMaxMoves(){  return MAX_MOVES;}
 
     @Override
     protected void fillCells() {

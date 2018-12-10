@@ -17,7 +17,7 @@ public class Level3 extends Level1 {
 
     @Override
     protected GameState newState() {
-        return new Leve13State(MAX_MOVES);
+        return new Level3State(MAX_MOVES);
     }
 
     @Override
@@ -26,6 +26,10 @@ public class Level3 extends Level1 {
         setCagedCandy();
     }
 
+    /**
+     * 	Method to get the level information in order to be displayed in the tooltips
+     * @return	A string containing all important level info
+     */
     public static String LevelInfo(){
         return "You have " + MAX_MOVES + "to remove all the cages.";
     }
@@ -46,11 +50,11 @@ public class Level3 extends Level1 {
             g()[i][j].setContent(new CagedCandy(((Candy) g()[i][j].getContent()).getColor()));
     }
 
-    private class Leve13State extends GameState {
+    private class Level3State extends GameState {
         private long cageCount = 0;
         private int maxMoves;
 
-        private Leve13State(int maxMoves) {
+        private Level3State(int maxMoves) {
             this.maxMoves = maxMoves;
             for(Cell[] i : g()){
                 for(Cell c : i){
