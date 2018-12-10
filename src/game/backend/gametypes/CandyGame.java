@@ -6,9 +6,6 @@ import game.backend.GameState;
 import game.backend.Grid;
 import game.backend.cell.Cell;
 import game.backend.element.Element;
-import game.backend.element.Fruit;
-import game.backend.element.FruitType;
-import game.backend.level.Level1;
 
 public class CandyGame implements GameListener {
 
@@ -20,11 +17,11 @@ public class CandyGame implements GameListener {
 		this.levelClass = clazz;
 	}
 
-
+/*
 	public Class<?> getLevelClass() {
 		return levelClass;
 	}
-
+*/
 	public void initGame() {
 		try {
 			this.grid = (Grid)this.levelClass.newInstance();

@@ -90,7 +90,8 @@ public class CandyFrame extends VBox {
 					//System.out.println("Get first = " +  lastPoint);
 
 					//	Makes the chosen cell glow
-					addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0.5);
+					if (lastPoint != null)
+						addGlow((int)lastPoint.getX(), (int)lastPoint.getY(), 0.5);
 				} else {
 					Point2D newPoint = translateCoords(event.getX() /*- 0.5*/, event.getY());
 					if (newPoint != null) {

@@ -26,51 +26,26 @@ public class AppMainMenu extends VBox {
 
     public AppMainMenu(Stage primaryStage) {
 
-        //  Image source: "http://candycrushjelly.wikia.com/wiki/File:Ice_Cream_Alps_background.jpg"
+        //  Setting the background image
         this.setStyle("-fx-background-image: url(images/CGBackground.jpg);" +
                 "-fx-background-size: 585px 585px;");
 
-        //getChildren().add(new AppMenu());
-
         AppMainMenu.primaryStage = primaryStage;
-        //this.setStyle("-fx-background-color: #f1ff");
 
-        //VBox levels = new VBox();
-
+        //  Hbox to contain the exit and about buttons
         HBox topBox = new HBox();
-        /*
-        HBox level1Box = new HBox();
-        HBox level2Box = new HBox();
-        HBox level3Box = new HBox();
 
-
-
-
-
-        level1Box.setAlignment(Pos.CENTER);
-        level1Box.setStyle("-fx-background-color: #12ffff");
-
-        level2Box.setAlignment(Pos.CENTER);
-        level2Box.setStyle("-fx-background-color: #ffff22");
-
-        level3Box.setAlignment(Pos.CENTER);
-        level3Box.setStyle("-fx-background-color: #122222");
-
-*/
+        //  Spacing between nodes in the Vbox
         this.setSpacing(10);
 
-        //topBox.setAlignment(Pos.TOP_CENTER);
-        //topBox.setStyle("-fx-background-color: #12ff22");
-        /*
-        levels.setAlignment(Pos.CENTER);
-        levels.setStyle("-fx-background-color: #f1ff");
-*/
+        //  Vbox size
         this.setPrefSize(65 * 9, 65 * 9);
         this.setPadding(new Insets(5,5,5,5));
 
         //  So that all the children are center aligned
         this.setAlignment(Pos.CENTER);
 
+        //  MENU LABEL
         Label menuTitle = new Label("Candy Game");
         menuTitle.setId("title-label");
         menuTitle.setAlignment(Pos.TOP_CENTER);
@@ -78,44 +53,29 @@ public class AppMainMenu extends VBox {
         menuTitle.setPrefSize(500,300);
         menuTitle.setPadding(new Insets(10,10,10,10));
 
+        //  TIP LABEL
         Label tipLabel = new Label("Hover on the level button for more info!");
         tipLabel.setId("info-label");
 
-        //this.getChildren().add(menuTitle);
-
         //  A button to go to each level
         Button level1Button = new Button("Level 1 - Normal");
-        ButtonFormatting(level1Button);
+        levelButtonFormatting(level1Button);
         level1Button.setOnAction(event -> {
             CandyGame game = new CandyGame(Level1.class);
-            /*
-            CandyFrame frame = new CandyFrame(game);
-            Scene scene = new Scene(frame);
-            AppMainMenu.this.primaryStage.setResizable(false);
-            AppMainMenu.this.primaryStage.setScene(scene);
-            AppMainMenu.this.primaryStage.show();
-            */
             LevelLoader(game, AppMainMenu.primaryStage);
         });
         level1Button.setTooltip(new Tooltip(Level1.LevelInfo()));
 
         Button level2Button = new Button("Level 2 - Fruits");
-        ButtonFormatting(level2Button);
+        levelButtonFormatting(level2Button);
         level2Button.setOnAction(event -> {
             CandyGame game = new FruitCandyGame(Level2.class);
-            /*
-            CandyFrame frame = new CandyFrame(game);
-            Scene scene = new Scene(frame);
-            AppMainMenu.this.primaryStage.setResizable(false);
-            AppMainMenu.this.primaryStage.setScene(scene);
-            AppMainMenu.this.primaryStage.show();
-            */
             LevelLoader(game, AppMainMenu.primaryStage);
         });
         level2Button.setTooltip(new Tooltip(Level2.LevelInfo()));
 
         Button level3Button = new Button("Level 3 - Cage");
-        ButtonFormatting(level3Button);
+        levelButtonFormatting(level3Button);
         level3Button.setOnAction(event -> {
             CandyGame game = new CageCandyGame(Level3.class);
             LevelLoader(game, AppMainMenu.primaryStage);
@@ -124,10 +84,7 @@ public class AppMainMenu extends VBox {
 
         //  Button for information
         Button infoButton = new Button("About");
-        infoButton.setId("option-button");
-        infoButton.setTextAlignment(TextAlignment.CENTER);
-        infoButton.setPrefSize(90,25);
-        infoButton.setAlignment(Pos.CENTER);
+        optionButtonFormatting(infoButton);
         infoButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("About");
@@ -140,10 +97,7 @@ public class AppMainMenu extends VBox {
 
         //  Button to quit application
         Button exitButton = new Button("Exit");
-        exitButton.setId("option-button");
-        exitButton.setTextAlignment(TextAlignment.CENTER);
-        exitButton.setPrefSize(90,25);
-        exitButton.setAlignment(Pos.CENTER);
+        optionButtonFormatting(exitButton);
         exitButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Exit");
@@ -157,32 +111,27 @@ public class AppMainMenu extends VBox {
             }
         });
 
+        //  Inset setting
         setIncets(level1Button);
         setIncets(level2Button);
         setIncets(level3Button);
         setIncets(infoButton);
         setIncets(exitButton);
 
+        //  Space between the 2 buttons
         topBox.setSpacing(400);
-
+        //  Adding option buttons
         topBox.getChildren().addAll(infoButton, exitButton);
-/*
 
-        level1Box.getChildren().addAll(level1Button);
-        level2Box.getChildren().addAll(level2Button);
-        level3Box.getChildren().addAll(level3Button);
-
-        this.getChildren().addAll(topBox, level1Box, level2Box, level3Box);
-*/
-
-        //levels.getChildren().addAll(level1Button, level2Button, level3Button);
-/*
-        this.getChildren().addAll(infoButton, menuTitle, exitButton, levels);
-*/
-        //this.getChildren().addAll(infoButton, menuTitle, exitButton, level1Button, level2Button, level3Button);
+        //  Adding all nodes
         this.getChildren().addAll(topBox, menuTitle, level1Button, level2Button, level3Button, tipLabel);
     }
 
+    /**
+     * Method to load a new level,
+     * @param candyGame     level class to be loaded
+     * @param primaryStage  primary stage to be able to load the level
+     */
     private void LevelLoader(CandyGame candyGame, Stage primaryStage){
         CandyFrame frame = new CandyFrame(candyGame);
         Scene scene = new Scene(frame);
@@ -191,14 +140,32 @@ public class AppMainMenu extends VBox {
         primaryStage.show();
     }
 
-    private void ButtonFormatting(Button button){
+    /**
+     *  Method to apply the same formatting to the level buttons
+     * @param button    Button to be formatted
+     */
+    private void levelButtonFormatting(Button button){
         button.setId("level-button");
         button.setTextAlignment(TextAlignment.CENTER);
         button.setPrefSize(150,50);
         button.setAlignment(Pos.CENTER);
-
     }
 
+    /**
+     *  Method to apply the same formatting to the option buttons
+     * @param button    Button to be formatted
+     */
+    private void optionButtonFormatting(Button button){
+        button.setId("option-button");
+        button.setTextAlignment(TextAlignment.CENTER);
+        button.setPrefSize(90,25);
+        button.setAlignment(Pos.CENTER);
+    }
+
+    /**
+     *  Method to set the incets to the buttons
+     * @param button    Button to be formatted
+     */
     private void setIncets(Button button){
         button.setPadding(new Insets(10,10,10,10));
     }
