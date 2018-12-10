@@ -60,6 +60,7 @@ public class CandyFrame extends VBox {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
+				//	Changed the framegap so it's shorter, this way the game is a little bit faster
 				Duration frameGap = Duration.millis(75);
 				Duration frameTime = Duration.ZERO;
 				for (int i = game().getSize() - 1; i >= 0; i--) {
