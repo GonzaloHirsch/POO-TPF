@@ -31,7 +31,7 @@ public class Level3 extends Level1 {
      * @return	A string containing all important level info
      */
     public static String LevelInfo(){
-        return "You have " + MAX_MOVES + "to remove all the cages.";
+        return "You have " + MAX_MOVES + " moves to remove all the cages.";
     }
 
     @Override
