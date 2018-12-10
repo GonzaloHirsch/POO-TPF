@@ -24,7 +24,7 @@ public abstract class Grid {
 	private Map<Cell, Point> gMap = new HashMap<>();
 	private GameState state;
 	private List<GameListener> listeners = new ArrayList<>();
-	private List<FrontEndCallbacks> frontCallbacks = new ArrayList<>();
+	private List<FrontEndListener> frontListener = new ArrayList<>();
 	private MoveMaker moveMaker;
 	private FigureDetector figureDetector;
 	
@@ -170,27 +170,33 @@ public abstract class Grid {
 	}
 	
 	public void wasUpdated(){
-		if (frontCallbacks.size() > 0) {
-			for (FrontEndCallbacks calls: frontCallbacks) {
+		if (frontListener.size() > 0) {
+			for (FrontEndListener calls: frontListener) {
 				calls.gridUpdated();
 			}
 		}
 	}
 	
 	public void cellExplosion(Element e) {
-		for (GameListener gl: listeners) {
-			gl.cellExplosion(e);
+		if (listeners.size() > 0) {
+			for (GameListener gl : listeners) {
+				gl.cellExplosion(e);
+			}
 		}
 	}
 
-	public void addFrontEndCallbacks(FrontEndCallbacks callbacks){
-		this.frontCallbacks.add(callbacks);
+	// Adds Front-End Listners which allows the interaction with front-end upon certain events
+	public void addFrontEndListener(FrontEndListener callbacks){
+		this.frontListener.add(callbacks);
 	}
 
+	// Interacts with front-end in order to show swap animation
 	public void frontSwapElements(int i1, int j1, int i2, int j2){
-		if (frontCallbacks.size() > 0) {
-			for (FrontEndCallbacks calls: frontCallbacks) {
-				calls.swapElements(i1, j1, i2, j2);
+		if((g[i1][j1].isMovable() && g[i2][j2].isMovable())) {		// We don't want to show animation if the element isn't movable
+			if (frontListener.size() > 0) {
+				for (FrontEndListener calls : frontListener) {
+					calls.swapElements(i1, j1, i2, j2);
+				}
 			}
 		}
 	}

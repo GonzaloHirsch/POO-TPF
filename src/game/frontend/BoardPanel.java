@@ -1,8 +1,8 @@
 package game.frontend;
 
-import javafx.collections.ObservableList;
+import game.frontend.animations.Animations;
+import javafx.animation.Animation;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,8 +25,11 @@ public class BoardPanel extends Pane {
 	}
 
 	private Group[][] cells;
+	private int cellSize;
 
 	public BoardPanel(final int rows, final int columns, final int cellSize) {
+		this.cellSize = cellSize;
+
 		setPrefWidth(columns*cellSize);
 		setPrefHeight(rows * cellSize);
 
@@ -35,20 +38,25 @@ public class BoardPanel extends Pane {
 		this.cells = new Group[rows][columns];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-			    cells[i][j] = new Group();
-			    for(Layout l: Layout.values()){
-			    	ImageView image = new ImageView();
-			    	image.setFitWidth(cellSize);
-			    	image.setFitHeight(cellSize);
-			    	cells[i][j].getChildren().add(image);
-				}
-
-
-			    cells[i][j].setTranslateX(j * cellSize);
-				cells[i][j].setTranslateY(i * cellSize);
+				cells[i][j] = createEmptyCell(i,j);
 				getChildren().add(cells[i][j]);
 			}
 		}
+	}
+
+	private Group createEmptyCell(int i, int j){
+		Group ret = new Group();
+		for(Layout l: Layout.values()){
+			ImageView image = new ImageView();
+			image.setFitWidth(cellSize);
+			image.setFitHeight(cellSize);
+			ret.getChildren().add(image);
+		}
+
+
+		ret.setTranslateX(j * cellSize);
+		ret.setTranslateY(i * cellSize);
+		return ret;
 	}
 
 	public void setBoardBackground(Image backgroundImage){
@@ -66,6 +74,15 @@ public class BoardPanel extends Pane {
         overlayImage.setImage(overlay);
 	}
 
+	public void resetPositions(){
+		for(Group[] i : cells){
+			for(Group j : i){
+				j.getChildren().get(Layout.MAIN_IMAGE.getIndex()).setTranslateX(0);
+				j.getChildren().get(Layout.MAIN_IMAGE.getIndex()).setTranslateY(0);
+			}
+		}
+	}
+
 	public void setGlowingImage(int row, int column, double value, Image image){
 		ImageView mainImage = (ImageView) cells[row][column].getChildren().get(Layout.MAIN_IMAGE.getIndex());
 		mainImage.setImage(image);
@@ -73,10 +90,14 @@ public class BoardPanel extends Pane {
 	}
 
 	public void swapCells(int i1, int j1, int i2, int j2){
-		Animations.SwapElements(cells[i1][j1].getChildren().get(Layout.MAIN_IMAGE.getIndex()), cells[i2][j2].getChildren().get(Layout.MAIN_IMAGE.getIndex()), 150);
-		Group aux = cells[i1][j1];
-		cells[i1][j1] = cells[i2][j2];
-		cells[i2][j2] = aux;
+		if(Math.abs(i1 - i2) + Math.abs(j1 - j2) == 1) {
+			Animations.SwapElements(cells[i1][j1].getChildren().get(Layout.MAIN_IMAGE.getIndex()), cells[i2][j2].getChildren().get(Layout.MAIN_IMAGE.getIndex()), 100);
+			Group aux = cells[i1][j1];
+			cells[i1][j1] = cells[i2][j2];
+			cells[i2][j2] = aux;
+		}else {
+			Animations.ShakeElement(cells[i1][j1].getChildren().get(Layout.MAIN_IMAGE.getIndex()),100);
+			Animations.ShakeElement(cells[i2][j2].getChildren().get(Layout.MAIN_IMAGE.getIndex()), 100);
+		}
 	}
-
 }
