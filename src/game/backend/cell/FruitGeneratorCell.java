@@ -41,7 +41,7 @@ public class FruitGeneratorCell extends Cell {
         double r = Math.random();
         System.out.println(FruitGeneratorCell.spawnedFruitAmount);
         if (FruitGeneratorCell.spawnedFruitAmount < FruitGeneratorCell.maxFruitAmount && r < FruitGeneratorCell.fruitChance){
-            System.out.println("FUCK YES");
+            System.out.println("ayufbgcfngysbfncsbsudygbsyfdbkvjhabdsvjhasbdvjabdvjhadbvjhava");
             int i = (int)(Math.random() * FruitType.values().length);
             FruitGeneratorCell.spawnedFruitAmount++;
             return new Fruit(FruitType.values()[i]);
@@ -63,6 +63,10 @@ public class FruitGeneratorCell extends Cell {
     @Override
     public void setContent(Element content) {
         throw new IllegalStateException();
+    }
+
+    public static void incrementSpawnedFruits(int value){
+        spawnedFruitAmount += value;
     }
 
     @Override

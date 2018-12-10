@@ -8,7 +8,7 @@ public class CandyGeneratorCell extends Cell {
 	public CandyGeneratorCell(Grid grid) {
 		super(grid);
 	}
-	
+
 	@Override
 	public boolean isMovable(){
 		return true;
@@ -21,28 +21,8 @@ public class CandyGeneratorCell extends Cell {
 
 	@Override
 	public Element getContent() {
-
 		int i = (int)(Math.random() * CandyColor.values().length);
 		return new Candy(CandyColor.values()[i]);
-
-
-		//	Only wrapped testing
-		/*
-		WrappedCandy ret = new WrappedCandy();
-
-		ret.setColor(CandyColor.values()[i]);
-		return ret;
-		*/
-
-		//	All bomb and 2 colors testing
-		/*
-		if (Math.random() > 0.4)
-			return new Candy(CandyColor.BLUE);
-		else if (Math.random() > 0.4)
-			return new Candy(CandyColor.GREEN);
-		Bomb bomb = new Bomb();
-		return bomb;
-		*/
 	}
 	
 	@Override

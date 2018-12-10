@@ -1,6 +1,7 @@
 package game.backend;
 
 import game.backend.cell.Cell;
+import game.backend.cell.FruitGeneratorCell;
 import game.backend.element.Candy;
 import game.backend.element.CandyColor;
 import game.backend.element.Element;
@@ -33,7 +34,7 @@ public abstract class Grid {
 		return g;
 	}
 	
-	protected GameState state(){
+	public GameState state(){
 		return state;
 	}
 	
@@ -64,8 +65,14 @@ public abstract class Grid {
 			int j = 0;
 			while (j < SIZE) {
 				//	In case a fruit is on the bottom of the board, it removes it
-				if (g[SIZE - 1][j].getContent() instanceof Fruit)
+				if (g[SIZE - 1][j].getContent() instanceof Fruit) {
+					System.out.println("MY MOVES ARE " + state.getMoves());
+					if (state == null) {
+						System.out.println("FUCK THIS");
+						FruitGeneratorCell.incrementSpawnedFruits(-1);
+					}
 					this.clearContent(SIZE - 1, j);
+				}
 				if (g[i][j].isEmpty()) {
 					if (g[i][j].fallUpperContent()) {
 						i = SIZE;

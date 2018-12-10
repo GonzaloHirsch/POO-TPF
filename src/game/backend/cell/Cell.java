@@ -18,6 +18,10 @@ public class Cell {
 		this.content = new Nothing();
 	}
 
+	protected Grid getGrid(){
+		return this.grid;
+	}
+
 	/*
 		Fills the around array with the cells adyacent to the actual one
 	 */
@@ -125,11 +129,20 @@ public class Cell {
 			if (this.hasFloor()) {
 
 				//	If the element is a fruit and doesn't have a wall below
-				if (this.getContent() instanceof Fruit && around[Direction.DOWN.ordinal()].isMovable())
-					return true;
+				if (this.getContent() instanceof Fruit){
+					if (around[Direction.DOWN.ordinal()].isMovable())
+						return true;
+					if (grid.state() == null){
+						FruitGeneratorCell.incrementSpawnedFruits(-1);
+						System.out.println("FUCK YOU");
+					}
+
+				}
+
 
 				//	If the element is a candy or a fruit with a wall below
 				grid.tryRemove(this);
+
 				return true;
 			} else {
 				Cell down = around[Direction.DOWN.ordinal()];
