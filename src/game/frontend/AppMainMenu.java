@@ -28,9 +28,11 @@ public class AppMainMenu extends VBox {
 
     public AppMainMenu(Stage primaryStage, ImageManager imageManager) {
 
-        //  Setting the background image
+        //  Setting the background image and some style
         this.setStyle("-fx-background-image: url(images/CGBackground.jpg);" +
-                "-fx-background-size: 585px 585px;");
+                "-fx-background-size: 585px 585px;" +
+                "-fx-border-width: 3px;" +
+                "-fx-border-color: black;");
 
         this.primaryStage = primaryStage;
         this.imageManager = imageManager;
@@ -90,6 +92,7 @@ public class AppMainMenu extends VBox {
         optionButtonFormatting(infoButton);
         infoButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.getDialogPane().getStylesheets().add("styles/stylesheet.css");
             alert.setTitle("About");
             alert.setHeaderText("Candy TPE");
             alert.setContentText("Cátedra POO 2018.\n" +
@@ -103,6 +106,7 @@ public class AppMainMenu extends VBox {
         optionButtonFormatting(exitButton);
         exitButton.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.getDialogPane().getStylesheets().add("styles/stylesheet.css");
             alert.setTitle("Exit");
             alert.setHeaderText("Exit application");
             alert.setContentText("Are you sure you want to exit?");
@@ -135,7 +139,7 @@ public class AppMainMenu extends VBox {
      * @param candyGame     level class to be loaded
      * @param primaryStage  primary stage to be able to load the level
      */
-    private void LevelLoader(CandyGame candyGame, Stage primaryStage, ImageManager imageManager){
+    public static void LevelLoader(CandyGame candyGame, Stage primaryStage, ImageManager imageManager){
         CandyFrame frame = new CandyFrame(candyGame, primaryStage, imageManager);
         Scene scene = new Scene(frame);
         primaryStage.setResizable(false);

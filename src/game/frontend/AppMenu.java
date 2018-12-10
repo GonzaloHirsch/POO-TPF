@@ -16,14 +16,20 @@ import java.util.Optional;
 
 public class AppMenu extends MenuBar {
     private Stage primaryStage;
+    private ImageManager imageManager;
 
-    public AppMenu(Stage primaryStage) {
+    public AppMenu(Stage primaryStage, ImageManager imageManager) {
         this.primaryStage = primaryStage;
+        this.imageManager = imageManager;
+
+        //  Applying the CSS sheet so it picks up the style
+        this.getStylesheets().add("styles/stylesheet.css");
 
         Menu file = new Menu("Options");
         MenuItem exitMenuItem = new MenuItem("Exit");
         exitMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.getDialogPane().getStylesheets().add("styles/stylesheet.css");
             alert.setTitle("Exit");
             alert.setHeaderText("Exit application");
             alert.setContentText("Are you sure you want to exit?");
@@ -37,19 +43,19 @@ public class AppMenu extends MenuBar {
         MenuItem mainMenuItem = new MenuItem("Return to main menu");
         mainMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.getDialogPane().getStylesheets().add("styles/stylesheet.css");
             alert.setTitle("Main Menu");
             alert.setHeaderText("Return to Main Menu");
             alert.setContentText("Are you sure you want to return to the Main Menu?");
             Optional<ButtonType> result = alert.showAndWait();
             if(result.isPresent()) {
                 if (result.get() == ButtonType.OK) {
-                    AppMainMenu menu = new AppMainMenu(this.primaryStage);
+                    AppMainMenu menu = new AppMainMenu(this.primaryStage, this.imageManager);
                     Scene scene = new Scene(menu);
                     scene.getStylesheets().add("styles/stylesheet.css");
                     this.primaryStage.setResizable(false);
                     this.primaryStage.setScene(scene);
                     this.primaryStage.show();
-
                 }
             }
         });
@@ -59,6 +65,7 @@ public class AppMenu extends MenuBar {
         MenuItem aboutMenuItem = new MenuItem("About");
         aboutMenuItem.setOnAction(event -> {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.getDialogPane().getStylesheets().add("styles/stylesheet.css");
             alert.setTitle("About");
             alert.setHeaderText("Candy TPE");
             alert.setContentText("Cátedra POO 2018.\n" +
@@ -69,9 +76,6 @@ public class AppMenu extends MenuBar {
 
         help.getItems().add(aboutMenuItem);
         getMenus().addAll(file, help);
-
-        //  Applying the CSS sheet so it picks up the style
-        this.getStylesheets().add("styles/stylesheet.css");
     }
 
 }

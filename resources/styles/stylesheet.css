@@ -4,10 +4,55 @@
     src: url("../fonts/Amsterdam.ttf")format("truetype");
 }
 
+/* THE MENU BAR */
 .menu, .menu-item, .menu-bar, .context-menu {
     -fx-background-color: #ffa3e8;
 }
 
+/* THE ALERT PANES */
+.dialog-pane{
+    -fx-border-color: black;
+    -fx-border-width:3.0px;
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-background-color:#ffa3e8;
+}
+
+.dialog-pane > .content.label {
+    -fx-background-color: #ffa3e8;
+    -fx-text-fill:black;
+    -fx-font-size:15.0px;
+}
+
+.dialog-pane .header-panel {
+    -fx-background-color: #ff6fea;
+}
+
+.dialog-pane .header-panel .label{
+    -fx-background-color: #ff6fea;
+    -fx-text-fill:black;
+    -fx-font-size:15.0px;
+}
+
+.dialog-pane .button{
+    -fx-padding: 8 15 15 15;
+    -fx-background-radius: 10; /* Radius of the button itself */
+    -fx-background-color: radial-gradient(radius 100%, #d61a8b, #ca0f77); /* Top part color */
+    -fx-border-radius: 8;
+
+    -fx-border-color: black;
+    -fx-border-width: 3.0px;
+
+    -fx-text-fill: linear-gradient(black, black);
+    -fx-font-size: 14px;
+}
+
+.dialog-pane .button:hover{
+    -fx-background-color: #ff68df;
+    -fx-text-fill:black;
+    -fx-font-weight:bold;
+}
 
 /*
     Inset values are in order:

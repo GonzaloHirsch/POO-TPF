@@ -8,12 +8,20 @@ import game.backend.element.Element;
 import game.backend.gametypes.CandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.util.Optional;
 
 public class CandyFrame extends VBox {
 
@@ -24,11 +32,18 @@ public class CandyFrame extends VBox {
 	private ImageManager imageManager;
 	private Point2D lastPoint;
 	private CandyGame game;
+	private Stage primaryStage;
+
+	private String winMessage = "You Win!";
+	private String loseMessage = "Loser!";
+	private String endMessage;
 
 	public CandyFrame(CandyGame game, Stage primaryStage, ImageManager imageManager) {
 		this.game = game;
-		getChildren().add(new AppMenu(primaryStage));
 		this.imageManager = imageManager;
+		this.primaryStage = primaryStage;
+
+		getChildren().add(new AppMenu(primaryStage, imageManager));
 
 		//	Board Panel
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
@@ -102,20 +117,42 @@ public class CandyFrame extends VBox {
 						//	Checking if game is over
 						if (game().isFinished()) {
 							if (game().playerWon()) {
-								message = message + " - Finished - You Win!";
+								this.endMessage = this.winMessage;
 							} else {
-								message = message + " - Finished - Loser !";
+								this.endMessage = this.loseMessage;
+							}
+
+							//	Prompting the player to play again
+							Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+							//	Changing buttons text
+							((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("Play Again");
+							((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Main Menu");
+
+							alert.getDialogPane().getStylesheets().add("styles/stylesheet.css");
+							alert.setTitle("Game Over");
+							alert.setHeaderText(this.endMessage);
+							alert.setContentText("Do you want to go back to the Main Menu or play again?");
+							Optional<ButtonType> result = alert.showAndWait();
+							if(result.isPresent()) {
+								if (result.get() == ButtonType.OK) {
+									AppMainMenu.LevelLoader(this.game, this.primaryStage, this.imageManager);
+								} else {
+									AppMainMenu menu = new AppMainMenu(this.primaryStage, this.imageManager);
+									Scene scene = new Scene(menu);
+									scene.getStylesheets().add("styles/stylesheet.css");
+									this.primaryStage.setResizable(false);
+									this.primaryStage.setScene(scene);
+									this.primaryStage.show();
+								}
 							}
 						}
-
 						scorePanel.updateScore(message);
 						lastPoint = null;
 					}
 				}
 			}
 		});
-
-
 	}
 
 	private CandyGame game() {
@@ -132,7 +169,6 @@ public class CandyFrame extends VBox {
 		boardPanel.setGlowingImage(i, j, value, image);
 	}
 
-
 	/*
 		We use sceneToLocal in order to avoid offsets from other elements such as the top menu bar.
 
@@ -146,7 +182,6 @@ public class CandyFrame extends VBox {
 	private Point2D translateCoords(double x, double y) {
 
 		double i = boardPanel.sceneToLocal(x,y).getX() / CELL_SIZE;
-		//double j = y / CELL_SIZE;
 		double j = boardPanel.sceneToLocal(x,y).getY() / CELL_SIZE;
 
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;

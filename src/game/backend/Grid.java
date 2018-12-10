@@ -49,6 +49,8 @@ public abstract class Grid {
 			}
 		}
 		fillCells();
+
+		//	This call fills the board with candies
 		fallElements();
 	}	
 
@@ -67,8 +69,14 @@ public abstract class Grid {
 			while (j < SIZE) {
 				//	In case a fruit is on the bottom of the board, it removes it
 				if (g[SIZE - 1][j].getContent() instanceof Fruit) {
+
+					/*
+						If the state is null, it means it was not initialized yet, so that means the game didn't start yet.
+						But if the game didn't start, if a fruit reaches the bottom and is eliminated it shouldn't count.
+					 */
 					if (state == null)
 						FruitGeneratorCell.incrementSpawnedFruits(-1);
+
 					this.clearContent(SIZE - 1, j);
 				}
 				if (g[i][j].isEmpty()) {
@@ -134,18 +142,14 @@ public abstract class Grid {
 	}
 	
 	private void removeFigure(int i, int j, Figure f) {
-		if (f.matches(Fruit.getFruitValue())){
-			clearContent(i, j);
+		CandyColor color = ((Candy) get(i, j)).getColor();
+		if (f.hasReplacement()) {
+			setContent(i, j, f.generateReplacement(color));
 		} else {
-			CandyColor color = ((Candy) get(i, j)).getColor();
-			if (f.hasReplacement()) {
-				setContent(i, j, f.generateReplacement(color));
-			} else {
-				clearContent(i, j);
-			}
-			for (Point p : f.getPoints()) {
-				clearContent(i + p.x, j + p.y);
-			}
+			clearContent(i, j);
+		}
+		for (Point p : f.getPoints()) {
+			clearContent(i + p.x, j + p.y);
 		}
 	}
 

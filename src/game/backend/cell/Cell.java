@@ -51,13 +51,21 @@ public class Cell {
 	
 	public void clearContent() {
 		if (content.isMovable()) {
+			/*
+				If a bomb is cleared by another fruit, this should explode.
+				This piece of code makes sure of that.
+			 */
 			if (content instanceof Bomb){
 
 				BombMove bombMove = new BombMove(grid);
 
 				//	Candy with a random color
 				int r = (int)(Math.random() * CandyColor.values().length);
+
+				//	Bomb explosion
 				bombMove.removeElements(new Candy(CandyColor.values()[r]));
+
+				//	Removes the bomb
 				this.content = new Nothing();
 			} else if (content instanceof Fruit){
 				if (!this.around[Direction.DOWN.ordinal()].isMovable()) {
@@ -128,15 +136,16 @@ public class Cell {
 			grid.wasUpdated();
 			if (this.hasFloor()) {
 
-				//	If the element is a fruit and doesn't have a wall below
+				//	If the element is a fruit
 				if (this.getContent() instanceof Fruit){
 					if (around[Direction.DOWN.ordinal()].isMovable())
 						return true;
-					if (grid.state() == null){
+					/*
+						If the state is null, it means it was not initialized yet, so that means the game didn't start yet.
+						But if the game didn't start, if a fruit reaches the bottom and is eliminated it shouldn't count.
+					 */
+					if (grid.state() == null)
 						FruitGeneratorCell.incrementSpawnedFruits(-1);
-						System.out.println("FUCK YOU");
-					}
-
 				}
 
 

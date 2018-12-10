@@ -16,6 +16,11 @@ public class GameApp extends Application {
 		//	Name on top of the window
 		primaryStage.setTitle("Candy Game");
 
+		/*
+			We create the image manager here and pass it to the rest of the classes
+			because this way it has to load all images once, thus cutting loading times a lot.
+			The first time may take a little bit more, but then loading times are very small.
+		 */
 		ImageManager imageManager = new ImageManager();
 
 		//  A new instance of the main menu
