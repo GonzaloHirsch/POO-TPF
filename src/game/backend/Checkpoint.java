@@ -1,7 +1,7 @@
 package game.backend;
 
 /*
-	The i and j might seem inverted but thats because of the grid notation
+	The i and j might seem inverted but that's because of the grid notation
 	Smaller i means higher in the board
  */
 

@@ -49,6 +49,7 @@ public class Level2 extends Grid {
         wallCell = new Cell(this);
         wallCell.setContent(new Wall());
         fruitGenCell = new FruitGeneratorCell(this, Level2.FRUIT_AMOUNT, Level2.FRUIT_CHANCE, new CandyGeneratorCell(this));
+        FruitGeneratorCell.initializeSpawnedFruits();
 
         //corners
         g()[0][0].setAround(fruitGenCell, g()[1][0], wallCell, g()[0][1]);

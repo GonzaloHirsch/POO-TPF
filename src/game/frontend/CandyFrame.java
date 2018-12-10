@@ -2,10 +2,12 @@ package game.frontend;
 
 import game.backend.FrontEndCallbacks;
 import game.backend.cell.Cell;
+import game.backend.cell.FruitGeneratorCell;
 import game.backend.element.*;
 
 import game.backend.element.Element;
 import game.backend.gametypes.CandyGame;
+import game.backend.gametypes.FruitCandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -121,6 +123,9 @@ public class CandyFrame extends VBox {
 							} else {
 								this.endMessage = this.loseMessage;
 							}
+
+							if (this.game instanceof FruitCandyGame)
+								FruitGeneratorCell.initializeSpawnedFruits();
 
 							//	Prompting the player to play again
 							Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
