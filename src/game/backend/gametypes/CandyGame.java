@@ -1,5 +1,6 @@
 package game.backend.gametypes;
 
+import game.backend.FrontEndCallbacks;
 import game.backend.GameListener;
 import game.backend.GameState;
 import game.backend.Grid;
@@ -53,6 +54,10 @@ public class CandyGame implements GameListener {
 	public void addGameListener(GameListener listener) {
 		grid.addListener(listener);
 	}
+
+	public void addFrontEndCallbacks(FrontEndCallbacks callbacks){
+		grid.addFrontEndCallbacks(callbacks);
+	}
 	
 	public long getScore() {
 		return state.getScore();
@@ -71,11 +76,6 @@ public class CandyGame implements GameListener {
 	@Override
 	public void cellExplosion(Element e) {
 		state.addScore(e.getScore());
-	}
-	
-	@Override
-	public void gridUpdated() {
-		//
 	}
 
 	@Override

@@ -1,14 +1,19 @@
 package game.frontend;
 
+import game.backend.FrontEndCallbacks;
 import game.backend.GameListener;
 import game.backend.cell.Cell;
+import game.backend.element.*;
+
 import game.backend.element.Element;
 import game.backend.gametypes.CandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Point2D;
+import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
@@ -29,6 +34,7 @@ public class CandyFrame extends VBox {
 
 		//	Board Panel
 		boardPanel = new BoardPanel(game.getSize(), game.getSize(), CELL_SIZE);
+		boardPanel.setBoardBackground(images.getImage(new Nothing()));
 		getChildren().add(boardPanel);
 
 		//	Score Panel
@@ -36,8 +42,8 @@ public class CandyFrame extends VBox {
 		getChildren().add(scorePanel);
 
 		game.initGame();
-		GameListener listener;
-		game.addGameListener(listener = new GameListener() {
+		FrontEndCallbacks callbacks;
+		game.addFrontEndCallbacks(callbacks = new FrontEndCallbacks() {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
@@ -58,13 +64,20 @@ public class CandyFrame extends VBox {
 				}
 				timeLine.play();
 			}
+
 			@Override
-			public void cellExplosion(Element e) {
-				//
+			public void swapElements(int i1, int j1, int i2, int j2) {
+				boardPanel.swapCells(i1, j1, i2, j2);
 			}
+
+			@Override
+			public void fallElements() {
+
+			}
+
 		});
 
-		listener.gridUpdated();
+		callbacks.gridUpdated();
 
 		//	When the user clicks on a grid cell
 		addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
@@ -127,9 +140,7 @@ public class CandyFrame extends VBox {
 
 
 	/*
-		I added (y - 25) to compensate for menu bar ontop.
-		There is an error of about CELL_SIZE/2, which is in the field of y.
-		Without the compensation, the game misreads the coordinates and fails to make some moves.
+		We use sceneToLocal in order to avoid offsets from other elements such as the top menu bar.
 
 		It switches the i and j coordinates to be consistent with the matrix notation.
 		For example (matrix):			For example (coordinates):
@@ -139,10 +150,11 @@ public class CandyFrame extends VBox {
 		Notice the switch between the coordinate systems
 	 */
 	private Point2D translateCoords(double x, double y) {
-		System.out.println(x + " - " + y);
-		double i = x / CELL_SIZE;
+
+		double i = boardPanel.sceneToLocal(x,y).getX() / CELL_SIZE;
 		//double j = y / CELL_SIZE;
-		double j = (y - 25) / CELL_SIZE;
+		double j = boardPanel.sceneToLocal(x,y).getY() / CELL_SIZE;
+
 		return (i >= 0 && i < game.getSize() && j >= 0 && j < game.getSize()) ? new Point2D(j, i) : null;
 	}
 

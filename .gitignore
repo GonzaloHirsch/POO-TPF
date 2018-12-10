@@ -20,5 +20,6 @@
 *.rar
 
 # Intellij #
+out/**/*.png
 out/*
 .idea/*

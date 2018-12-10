@@ -23,6 +23,7 @@ public abstract class Grid {
 	private Map<Cell, Point> gMap = new HashMap<>();
 	private GameState state;
 	private List<GameListener> listeners = new ArrayList<>();
+	private List<FrontEndCallbacks> frontCallbacks = new ArrayList<>();
 	private MoveMaker moveMaker;
 	private FigureDetector figureDetector;
 	
@@ -100,12 +101,14 @@ public abstract class Grid {
 			If its moved from here, the game BREAKS
 		 */
         swapContent(i1, j1, i2, j2);
+		frontSwapElements(i1, j1, i2, j2);
 		if (move != null && move.isValid()) {
-			//swapContent(i1, j1, i2, j2);
+			frontSwapElements(i1, j1, i2, j2);
 			move.removeElements();
 			fallElements();
 			return true;
 		} else {
+			frontSwapElements(i1, j1, i2, j2);
 			swapContent(i1, j1, i2, j2);
 			return false;
 		}
@@ -160,9 +163,9 @@ public abstract class Grid {
 	}
 	
 	public void wasUpdated(){
-		if (listeners.size() > 0) {
-			for (GameListener gl: listeners) {
-				gl.gridUpdated();
+		if (frontCallbacks.size() > 0) {
+			for (FrontEndCallbacks calls: frontCallbacks) {
+				calls.gridUpdated();
 			}
 		}
 	}
@@ -170,6 +173,18 @@ public abstract class Grid {
 	public void cellExplosion(Element e) {
 		for (GameListener gl: listeners) {
 			gl.cellExplosion(e);
+		}
+	}
+
+	public void addFrontEndCallbacks(FrontEndCallbacks callbacks){
+		this.frontCallbacks.add(callbacks);
+	}
+
+	public void frontSwapElements(int i1, int j1, int i2, int j2){
+		if (frontCallbacks.size() > 0) {
+			for (FrontEndCallbacks calls: frontCallbacks) {
+				calls.swapElements(i1, j1, i2, j2);
+			}
 		}
 	}
 
