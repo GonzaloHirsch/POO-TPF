@@ -101,7 +101,6 @@ public abstract class Grid {
 		 */
         swapContent(i1, j1, i2, j2);
 		if (move != null && move.isValid()) {
-			//swapContent(i1, j1, i2, j2);
 			move.removeElements();
 			fallElements();
 			return true;

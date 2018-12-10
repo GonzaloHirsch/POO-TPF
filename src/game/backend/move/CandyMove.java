@@ -42,9 +42,11 @@ public class CandyMove extends Move {
 	public void removeElements() {
 		if (f1 != null) {
 			detector.removeFigure(i1, j1, f1);
+			grid.wasUpdated();
 		}
 		if (f2 != null) {
 			detector.removeFigure(i2, j2, f2);
+			grid.wasUpdated();
 		}
 	}
 
