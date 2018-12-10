@@ -11,8 +11,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -27,8 +25,6 @@ public class AppMainMenu extends VBox {
     private ImageManager imageManager;
 
     public AppMainMenu(Stage primaryStage, ImageManager imageManager) {
-
-        Font.loadFont(ClassLoader.getSystemResource("fonts/Amsterdam.ttf").toExternalForm(), 14);
 
         //  Setting the background image and some style
         this.setStyle("-fx-background-image: url(images/CGBackground.jpg);" +

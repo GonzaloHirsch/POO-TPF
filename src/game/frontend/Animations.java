@@ -2,11 +2,7 @@ package game.frontend;
 
 import javafx.animation.Animation;
 import javafx.animation.TranslateTransition;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class Animations {

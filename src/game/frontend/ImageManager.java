@@ -17,7 +17,6 @@ public class ImageManager {
 		//	Instances without color or type
 		Candy cy = new Candy();
 		Fruit ft = new Fruit();
-		//CagedCandy xc = new CagedCandy();
 		WrappedCandy wc = new WrappedCandy();
 		VerticalStripedCandy vc = new VerticalStripedCandy();
 		HorizontalStripedCandy hc = new HorizontalStripedCandy();

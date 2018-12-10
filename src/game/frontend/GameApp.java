@@ -2,7 +2,6 @@ package game.frontend;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class GameApp extends Application {

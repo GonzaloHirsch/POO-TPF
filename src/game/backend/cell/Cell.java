@@ -144,11 +144,6 @@ public class Cell {
 						If the state is null, it means it was not initialized yet, so that means the game didn't start yet.
 						But if the game didn't start, if a fruit reaches the bottom and is eliminated it shouldn't count.
 					 */
-					/*
-					System.out.println(grid.state());
-					if (grid.state() == null)
-						FruitGeneratorCell.incrementSpawnedFruits(-1);
-						*/
 				}
 
 
