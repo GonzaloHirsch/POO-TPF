@@ -43,7 +43,6 @@ public class FruitGeneratorCell extends Cell {
         if (FruitGeneratorCell.spawnedFruitAmount < FruitGeneratorCell.maxFruitAmount && r < FruitGeneratorCell.fruitChance){
             int i = (int)(Math.random() * FruitType.values().length);
             FruitGeneratorCell.spawnedFruitAmount++;
-            System.out.println(spawnedFruitAmount);
             return new Fruit(FruitType.values()[i]);
         }
 
