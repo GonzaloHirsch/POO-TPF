@@ -1,8 +1,8 @@
 /*  FONT IMPORT  */
-@font-face {
+/*@font-face {
     font-family: 'Amsterdam';
     src: url("../fonts/Amsterdam.ttf")format("truetype");
-}
+}*/
 
 /* THE MENU BAR */
 .menu, .menu-item, .menu-bar, .context-menu {
