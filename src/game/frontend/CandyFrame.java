@@ -80,7 +80,8 @@ public class CandyFrame extends VBox {
 
 			@Override
 			public void swapElements(int i1, int j1, int i2, int j2) {
-				boardPanel.swapCells(i1, j1, i2, j2);
+				if(Math.abs(i1 - i2) + Math.abs(j1 - j2) == 1) //We only want to animate the cell swap if the cells are neighbours
+					boardPanel.swapCells(i1, j1, i2, j2);
 			}
 
 			@Override

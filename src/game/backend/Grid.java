@@ -201,9 +201,11 @@ public abstract class Grid {
 	 * @param j2
 	 */
 	public void frontSwapElements(int i1, int j1, int i2, int j2){
-		if (frontListners.size() > 0) {
-			for (FrontEndListener calls: frontListners) {
-				calls.swapElements(i1, j1, i2, j2);
+		if(g[i1][j1].isMovable() && g[i2][j2].isMovable()) {
+			if (frontListners.size() > 0) {
+				for (FrontEndListener calls : frontListners) {
+					calls.swapElements(i1, j1, i2, j2);
+				}
 			}
 		}
 	}
