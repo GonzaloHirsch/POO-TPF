@@ -1,16 +1,19 @@
 package game.frontend;
 
-import game.backend.FrontEndListener;
+import game.backend.FrontEndCallbacks;
 import game.backend.cell.Cell;
+import game.backend.element.*;
+
 import game.backend.element.Element;
-import game.backend.element.Nothing;
 import game.backend.gametypes.CandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -52,8 +55,8 @@ public class CandyFrame extends VBox {
 		getChildren().add(scorePanel);
 
 		game.initGame();
-		FrontEndListener callbacks;
-		game.addFrontEndCallbacks(callbacks = new FrontEndListener() {
+		FrontEndCallbacks callbacks;
+		game.addFrontEndCallbacks(callbacks = new FrontEndCallbacks() {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();
@@ -78,6 +81,11 @@ public class CandyFrame extends VBox {
 			@Override
 			public void swapElements(int i1, int j1, int i2, int j2) {
 				boardPanel.swapCells(i1, j1, i2, j2);
+			}
+
+			@Override
+			public void fallElements() {
+
 			}
 
 		});

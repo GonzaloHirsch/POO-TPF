@@ -1,6 +1,6 @@
 package game.backend.gametypes;
 
-import game.backend.FrontEndListener;
+import game.backend.FrontEndCallbacks;
 import game.backend.GameListener;
 import game.backend.GameState;
 import game.backend.Grid;
@@ -52,8 +52,8 @@ public class CandyGame implements GameListener {
 		grid.addListener(listener);
 	}
 
-	public void addFrontEndCallbacks(FrontEndListener callbacks){
-		grid.addFrontEndListener(callbacks);
+	public void addFrontEndCallbacks(FrontEndCallbacks callbacks){
+		grid.addFrontEndCallbacks(callbacks);
 	}
 	
 	public long getScore() {

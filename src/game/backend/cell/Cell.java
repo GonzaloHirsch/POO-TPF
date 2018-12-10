@@ -5,16 +5,15 @@ import game.backend.element.*;
 import game.backend.move.BombMove;
 import game.backend.move.Direction;
 
-import java.awt.geom.Point2D;
-import java.util.Vector;
-
 public class Cell {
+
 	private Grid grid;
 	private Cell[] around = new Cell[Direction.values().length];
 	private Element content;
 	
 	public Cell(Grid grid) {
 		this.grid = grid;
+
 		//	Initializes all cells with nothing
 		this.content = new Nothing();
 	}
@@ -152,6 +151,7 @@ public class Cell {
 
 				//	If the element is a candy or a fruit with a wall below
 				grid.tryRemove(this);
+
 				return true;
 			} else {
 				Cell down = around[Direction.DOWN.ordinal()];

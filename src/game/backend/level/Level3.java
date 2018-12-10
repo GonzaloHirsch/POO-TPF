@@ -40,8 +40,8 @@ public class Level3 extends Level1 {
     }
 
     private void setCagedCandy(){
-        for(int j = 1; j < SIZE-1; j++) {
-            convertToCaged(4, j);
+        for(int i = 1; i < SIZE-1; i++) {
+            convertToCaged(4, i);
         }
     }
 
