@@ -1,6 +1,6 @@
 package game.frontend;
 
-import game.backend.FrontEndCallbacks;
+import game.backend.FrontEndListener;
 import game.backend.cell.Cell;
 import game.backend.cell.FruitGeneratorCell;
 import game.backend.element.*;
@@ -10,12 +10,10 @@ import game.backend.gametypes.CandyGame;
 import game.backend.gametypes.FruitCandyGame;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -57,8 +55,8 @@ public class CandyFrame extends VBox {
 		getChildren().add(scorePanel);
 
 		game.initGame();
-		FrontEndCallbacks callbacks;
-		game.addFrontEndCallbacks(callbacks = new FrontEndCallbacks() {
+		FrontEndListener callbacks;
+		game.addFrontEndCallbacks(callbacks = new FrontEndListener() {
 			@Override
 			public void gridUpdated() {
 				Timeline timeLine = new Timeline();

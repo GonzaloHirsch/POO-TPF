@@ -39,12 +39,20 @@ public class Level3 extends Level1 {
         return super.tryMove(i1,j1,i2,j2);
     }
 
+    /**
+     * Sets each Candy which will start as a CagedCandy
+     */
     private void setCagedCandy(){
         for(int i = 1; i < SIZE-1; i++) {
             convertToCaged(4, i);
         }
     }
 
+    /**
+     * Converts any Candy to CagedCandy, using its correspondant color
+     * @param i
+     * @param j
+     */
     private void convertToCaged(int i, int j){
         if (g()[i][j].getContent() instanceof Candy)
             g()[i][j].setContent(new CagedCandy(((Candy) g()[i][j].getContent()).getColor()));

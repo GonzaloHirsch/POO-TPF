@@ -2,7 +2,7 @@ package game.backend;
 
 import game.backend.element.Element;
 
-public interface FrontEndCallbacks {
+public interface FrontEndListener {
 
     void gridUpdated();
 

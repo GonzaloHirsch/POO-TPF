@@ -24,5 +24,5 @@ public abstract class Element {
 		return 0;
 	}
 
-	public boolean isOverlay(){ return false; }
+	public boolean isOverlay(){ return false; }		// For elements such as Cages and Jelly
 }

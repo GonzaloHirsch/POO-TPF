@@ -73,7 +73,7 @@ public class BoardPanel extends Pane {
 	}
 
 	public void swapCells(int i1, int j1, int i2, int j2){
-		Animations.SwapElements(cells[i1][j1].getChildren().get(Layout.MAIN_IMAGE.getIndex()), cells[i2][j2].getChildren().get(Layout.MAIN_IMAGE.getIndex()), 150);
+		Animations.SwapElements(cells[i1][j1].getChildren().get(Layout.MAIN_IMAGE.getIndex()), cells[i2][j2].getChildren().get(Layout.MAIN_IMAGE.getIndex()), 100);
 		Group aux = cells[i1][j1];
 		cells[i1][j1] = cells[i2][j2];
 		cells[i2][j2] = aux;

@@ -24,7 +24,7 @@ public abstract class Grid {
 	private Map<Cell, Point> gMap = new HashMap<>();
 	private GameState state;
 	private List<GameListener> listeners = new ArrayList<>();
-	private List<FrontEndCallbacks> frontCallbacks = new ArrayList<>();
+	private List<FrontEndListener> frontListners = new ArrayList<>();
 	private MoveMaker moveMaker;
 	private FigureDetector figureDetector;
 	
@@ -169,14 +169,7 @@ public abstract class Grid {
 	public void addListener(GameListener listener) {
 		listeners.add(listener);
 	}
-	
-	public void wasUpdated(){
-		if (frontCallbacks.size() > 0) {
-			for (FrontEndCallbacks calls: frontCallbacks) {
-				calls.gridUpdated();
-			}
-		}
-	}
+
 	
 	public void cellExplosion(Element e) {
 		for (GameListener gl: listeners) {
@@ -184,13 +177,32 @@ public abstract class Grid {
 		}
 	}
 
-	public void addFrontEndCallbacks(FrontEndCallbacks callbacks){
-		this.frontCallbacks.add(callbacks);
+	/**
+	 * Adds Front-End Listeners which listen to certain Back-End events, and updates correspondingly
+	 * @param listener
+	 */
+	public void addFrontEndListener(FrontEndListener listener){
+		this.frontListners.add(listener);
 	}
 
+	public void wasUpdated(){
+		if (frontListners.size() > 0) {
+			for (FrontEndListener calls: frontListners) {
+				calls.gridUpdated();
+			}
+		}
+	}
+
+	/**
+	 * Event called when two elements get swapped
+	 * @param i1
+	 * @param j1
+	 * @param i2
+	 * @param j2
+	 */
 	public void frontSwapElements(int i1, int j1, int i2, int j2){
-		if (frontCallbacks.size() > 0) {
-			for (FrontEndCallbacks calls: frontCallbacks) {
+		if (frontListners.size() > 0) {
+			for (FrontEndListener calls: frontListners) {
 				calls.swapElements(i1, j1, i2, j2);
 			}
 		}
