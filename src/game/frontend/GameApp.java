@@ -26,8 +26,6 @@ public class GameApp extends Application {
 
 		//  A new instance of the main menu
 		AppMainMenu menu = new AppMainMenu(primaryStage, imageManager);
-		
-		Font.loadFont(ClassLoader.getSystemResource("fonts/Amsterdam.ttf").toExternalForm(), 14);
 
 		Scene scene = new Scene(menu);
 

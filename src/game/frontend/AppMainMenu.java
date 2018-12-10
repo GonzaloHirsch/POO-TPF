@@ -28,6 +28,8 @@ public class AppMainMenu extends VBox {
 
     public AppMainMenu(Stage primaryStage, ImageManager imageManager) {
 
+        Font.loadFont(ClassLoader.getSystemResource("fonts/Amsterdam.ttf").toExternalForm(), 14);
+
         //  Setting the background image and some style
         this.setStyle("-fx-background-image: url(images/CGBackground.jpg);" +
                 "-fx-background-size: 585px 585px;" +
